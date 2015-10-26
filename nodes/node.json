@@ -1,0 +1,29 @@
+{
+  "name": "wolferx",
+  "chef_environment": "_default",
+  "normal": {
+    "tags": [
+
+    ],
+    "tomcat": {
+      "keystore_password": "uTRkMKaR7p01aJgLriUT",
+      "truststore_password": "TMpdDhy0Iml1prP2syrG"
+    }
+  },
+  "run_list": [
+  "recipe[group]",
+  "recipe[users]",
+  "recipe[sudo]",
+  "recipe[wolf-yum]",
+  "recipe[git]",
+  "recipe[iptables]",
+  "recipe[iptables_conf]",
+  "recipe[nginx]",
+  "recipe[java]",
+  "recipe[tomcat]",
+  "recipe[maven]",
+  "recipe[wolferapi]",
+  "recipe[mlocate]"
+]
+
+}
