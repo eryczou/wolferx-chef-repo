@@ -51,7 +51,20 @@ How to use
 10. bootstrap the server by chef-client
 	- *CMD:* chef-client
 
-Next Steps
-==========
+Test
+====
+1. @Linux get ip address
+	- *CMD:* ifconfig
+2. @Local add Linux hostname to hosts
+	- *CMD:* vi /etc/hosts
+	- insert "hostname ip", eg. "wolferx.com 192.168.1.15"
+3. @Browser 
+	- *url:* http://wolferx.com/wolfx/rest/countries
 
-Read the README file in each of the subdirectories for more information about what goes in those directories.
+
+Congrats!
+=========
+
+You should have a running machine with one line deployment enabled.
+- *One Line*: chef-client
+- *Deploy*: https://github.com/chenfanggm/wolfx.git
