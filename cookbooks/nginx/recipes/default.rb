@@ -9,6 +9,7 @@
 
 execute 'install epel-release' do
   command 'rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
+  not_if "rpm -qa | grep 'epel-release'"
 end    
 
 package 'nginx' do
