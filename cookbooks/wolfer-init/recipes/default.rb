@@ -13,7 +13,7 @@ execute "yum update" do
 end
 
 execute "yum groupinstall Development Tools" do
-  command "yum groupinstall 'Development Tools'"
+  command "yum groupinstall 'Development Tools' -y"
 end
 
 package 'mlocate' do
