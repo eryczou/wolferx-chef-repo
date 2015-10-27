@@ -9,12 +9,11 @@
 
 remote_file "/tmp/apache-cassandra.tar.gz" do
    source "http://apache.arvixe.com/cassandra/3.0.0/apache-cassandra-3.0.0-rc2-bin.tar.gz"
-   notifies :run, 'execute[untar cassandra]', :immediately
 end
 
 execute 'untar cassandra' do
   command 'tar -xzvf /tmp/apache-cassandra.tar.gz -C /tmp'
-  action :nothing
+  action :run
   not_if {::File.exists?("/tmp/apache-cassandra-3.0.0-rc2")} 
 end
 
