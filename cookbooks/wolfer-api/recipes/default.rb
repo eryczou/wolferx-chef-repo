@@ -8,7 +8,7 @@
 #
 
 git '/site/wolfx' do
-  repository 'https://github.com/chenfanggm/wolfx.git'
+  repository 'https://github.com/wolferian/wolferapi.git'
   revision 'master'
   action :sync
 end
