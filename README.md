@@ -6,7 +6,7 @@ This is the "chef-repo" for building WolferX Development Environment.
 How to use
 ==========
 
-1. boot up a CentOS 7 linux machine (or EC2)
+1. boot up CentOS-7 linux machine (or EC2)
 2. login with *root* user or running following command with sudo
 3. update yum package management tool
 	- *CMD:* yum update
@@ -36,6 +36,13 @@ How to use
 	node_path '/root/chef-repo/nodes'
 	'''
 7. create RSA key pair for github
+	(Following is optional, only no id_rsa && id_rsa.pub file exist in ~/.ssh)
+	- *CMD:* mkdir ~/.ssh
+	- *CMD:* cd ~/.ssh
+	- *CMD:* ls -al
+	- *CMD:* ssh-keygen -t rsa -b 4096 -C "wolferiangm@gmail.com"
+	- keep enter empty when CL ask you for path & passphrase
+
 8. install git & clone chef-repo
 	- *CMD:* yum install git
 	- *CMD:* git clone https://github.com/chenfanggm/wolfer-chef-repo.git

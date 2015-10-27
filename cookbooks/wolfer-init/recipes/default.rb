@@ -16,6 +16,10 @@ execute "yum groupinstall Development Tools" do
   command "yum groupinstall 'Development Tools' -y"
 end
 
+package 'net-tools' do
+  action :install
+end
+
 package 'mlocate' do
   action :install
   notifies :run, "execute[updatedb]", :immediately
