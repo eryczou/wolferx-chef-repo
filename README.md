@@ -18,7 +18,6 @@ How to use
 6. insert following config into /etc/chef/client.rb
 	- *CMD:* vi /etc/chef/client.rb
 	- *Config:*
-	'''
 	#environment 'production'
 	#environment_path '/root/chef-repo/environments'
 	#chef_server_url  "https://cfchef/organizations/wolferx"
@@ -34,7 +33,7 @@ How to use
 	local_mode 'true'
 	node_name 'node'
 	node_path '/root/chef-repo/nodes'
-	'''
+	
 7. create RSA key pair for github
 	(Following is optional, only no id_rsa && id_rsa.pub file exist in ~/.ssh)
 	- *CMD:* mkdir ~/.ssh
