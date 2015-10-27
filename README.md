@@ -18,21 +18,21 @@ How to use
 6. insert following config into /etc/chef/client.rb
 	- *CMD:* vi /etc/chef/client.rb
 	- *Config:*
-	#environment 'production'
-	#environment_path '/root/chef-repo/environments'
-	#chef_server_url  "https://cfchef/organizations/wolferx"
-	#validation_client_name "wolferx-validator"
-	#Using default node name (fqdn)
-	#trusted_certs_dir "/etc/chef/trusted_certs"
-	log_location     STDOUT
-	log_level :info
-	cookbook_path   "/root/chef-repo/cookbooks"
-	role_path '/root/chef-repo/roles'
-	data_bag_path  '/root/chef-repo/data_bags'
-	encrypted_data_bag_secret '/etc/chef'
-	local_mode 'true'
-	node_name 'node'
-	node_path '/root/chef-repo/nodes'
+		#environment 'production'
+		#environment_path '/root/chef-repo/environments'
+		#chef_server_url  "https://cfchef/organizations/wolferx"
+		#validation_client_name "wolferx-validator"
+		#Using default node name (fqdn)
+		#trusted_certs_dir "/etc/chef/trusted_certs"
+		log_location     STDOUT
+		log_level :info
+		cookbook_path   "/root/chef-repo/cookbooks"
+		role_path '/root/chef-repo/roles'
+		data_bag_path  '/root/chef-repo/data_bags'
+		encrypted_data_bag_secret '/etc/chef'
+		local_mode 'true'
+		node_name 'node'
+		node_path '/root/chef-repo/nodes'
 	
 7. create RSA key pair for github
 	(Following is optional, only no id_rsa && id_rsa.pub file exist in ~/.ssh)
