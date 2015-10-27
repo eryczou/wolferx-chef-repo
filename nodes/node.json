@@ -15,7 +15,6 @@
   "recipe[group]",
   "recipe[users]",
   "recipe[sudo]",
-  "recipe[mlocate]",
   "recipe[git]",
   "recipe[iptables]",
   "recipe[iptables_conf]",
