@@ -7,9 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package 'epel-release' do
-  action :install
-end
+execute 'install epel-release' do
+  command 'rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
+end    
 
 package 'nginx' do
   action :install
