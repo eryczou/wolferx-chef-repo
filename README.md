@@ -42,6 +42,7 @@ How to use
 	- *CMD:* ls -al
 	- *CMD:* ssh-keygen -t rsa -b 4096 -C "wolferiangm@gmail.com"
 	- keep enter empty when CL ask you for path & passphrase
+	- add id_rsa.pub to github
 
 8. install git & clone chef-repo
 	- *CMD:* yum install git

@@ -18,6 +18,11 @@ execute 'mvn clean install wolfx' do
   notifies :run, 'execute[cp war wolfx to tomcat home]', :immediately
 end
 
+execute 'rm previous wolfx.war'
+  command 'rm -f /var/lib/tomcat/webapps/wolfx.war'
+  only_if { ::File.exists? '[/var/lib/tomcat/webapps/wolfx.war]' } 
+end
+
 execute 'cp war wolfx to tomcat home' do
   command 'cp /site/wolfx/target/wolfx.war /var/lib/tomcat/webapps/'
 end
