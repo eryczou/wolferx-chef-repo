@@ -1,11 +1,11 @@
-wolf-yum CHANGELOG
-==================
+wolfer-init CHANGELOG
+=====================
 
-This file is used to list changes made in each version of the wolf-yum cookbook.
+This file is used to list changes made in each version of the wolfer-init cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of wolf-yum
+- [your_name] - Initial release of wolfer-init
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

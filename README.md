@@ -1,26 +1,48 @@
 Overview
 ========
 
-Every Chef installation needs a Chef Repository. This is the place where cookbooks, roles, config files and other artifacts for managing systems with Chef will live. We strongly recommend storing this repository in a version control system such as Git and treat it like source code.
+This is the "chef-repo" for building WolferX Development Environment.
 
-While we prefer Git, and make this repository available via GitHub, you are welcome to download a tar or zip archive and use your favorite version control system to manage the code.
+How to use
+==========
 
-Repository Directories
-======================
-
-This repository contains several directories, and each directory contains a README file that describes what it is for in greater detail, and how to use it for managing your systems with Chef.
-
-* `cookbooks/` - Cookbooks you download or create.
-* `data_bags/` - Store data bags and items in .json in the repository.
-* `roles/` - Store roles in .rb or .json in the repository.
-* `environments/` - Store environments in .rb or .json in the repository.
-
-Configuration
-=============
-
-The config file, `.chef/knife.rb` is a repository specific configuration file for knife. If you're using the Chef Platform, you can download one for your organization from the management console. If you're using the Open Source Chef Server, you can generate a new one with `knife configure`. For more information about configuring Knife, see the Knife documentation.
-
-https://docs.chef.io/knife.html
+1. boot up a CentOS 7 linux machine (or EC2)
+2. login with *root* user or running following command with sudo
+3. update yum package management tool
+	- *CMD:* yum update
+4. install chef-client by rpm
+	- *CMD:* rpm -ivh https://opscode-omnibus-packages.s3.amazonaws.com/el/7/x86_64/chef-12.5.1-1.el7.x86_64.rpm
+5. create chef-client configure file
+	- *CMD:* mkdir -p /etc/chef/
+	- *CMD:* touch /etc/chef/client.rb
+6. insert following config into /etc/chef/client.rb
+	- *CMD:* vi /etc/chef/client.rb
+	- *Config:*
+	'''
+	#environment 'production'
+	#environment_path '/root/chef-repo/environments'
+	#chef_server_url  "https://cfchef/organizations/wolferx"
+	#validation_client_name "wolferx-validator"
+	#Using default node name (fqdn)
+	#trusted_certs_dir "/etc/chef/trusted_certs"
+	log_location     STDOUT
+	log_level :info
+	cookbook_path   "/root/chef-repo/cookbooks"
+	role_path '/root/chef-repo/roles'
+	data_bag_path  '/root/chef-repo/data_bags'
+	encrypted_data_bag_secret '/etc/chef'
+	local_mode 'true'
+	node_name 'node'
+	node_path '/root/chef-repo/nodes'
+	'''
+7. create RSA key pair for github
+8. install git & clone chef-repo
+	- *CMD:* yum install git
+	- *CMD:* git clone https://github.com/chenfanggm/wolfer-chef-repo.git
+9. change the name of wolferx-chef-repo to chef-repo
+	- *CMD:* mv ~/wolferx-chef-repo ~/chef-repo
+10. bootstrap the server by chef-client
+	- *CMD:* chef-client
 
 Next Steps
 ==========

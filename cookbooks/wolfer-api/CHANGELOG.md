@@ -1,11 +1,11 @@
-mlocate CHANGELOG
-=================
+wolfer-api CHANGELOG
+====================
 
-This file is used to list changes made in each version of the mlocate cookbook.
+This file is used to list changes made in each version of the wolfer-api cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of mlocate
+- [your_name] - Initial release of wolfer-api
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

@@ -1,5 +1,5 @@
-mlocate Cookbook
-================
+wolfer-init Cookbook
+====================
 TODO: Enter the cookbook description here.
 
 e.g.
@@ -11,14 +11,14 @@ TODO: List your cookbook requirements. Be sure to include any requirements this 
 
 e.g.
 #### packages
-- `toaster` - mlocate needs toaster to brown your bagel.
+- `toaster` - wolfer-init needs toaster to brown your bagel.
 
 Attributes
 ----------
 TODO: List your cookbook attributes here.
 
 e.g.
-#### mlocate::default
+#### wolfer-init::default
 <table>
   <tr>
     <th>Key</th>
@@ -27,7 +27,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['mlocate']['bacon']</tt></td>
+    <td><tt>['wolfer-init']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -36,17 +36,17 @@ e.g.
 
 Usage
 -----
-#### mlocate::default
+#### wolfer-init::default
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `mlocate` in your node's `run_list`:
+Just include `wolfer-init` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[mlocate]"
+    "recipe[wolfer-init]"
   ]
 }
 ```

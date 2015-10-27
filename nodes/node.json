@@ -11,10 +11,11 @@
     }
   },
   "run_list": [
+  "recipe[wolfer-init]",
   "recipe[group]",
   "recipe[users]",
   "recipe[sudo]",
-  "recipe[wolf-yum]",
+  "recipe[mlocate]",
   "recipe[git]",
   "recipe[iptables]",
   "recipe[iptables_conf]",
@@ -22,8 +23,7 @@
   "recipe[java]",
   "recipe[tomcat]",
   "recipe[maven]",
-  "recipe[wolferapi]",
-  "recipe[mlocate]"
+  "recipe[wolfer-api]"
 ]
 
 }
