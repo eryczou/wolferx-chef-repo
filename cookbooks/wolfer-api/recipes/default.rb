@@ -15,12 +15,14 @@ end
 
 execute 'mvn clean install wolfx' do
   command 'mvn -f /site/wolfx/pom.xml clean install'
-  notifies :run, 'execute[cp war wolfx to tomcat home]', :immediately
+  notifies :run, 'execute[rm previous wolfx.war]', :immediately
 end
 
 execute 'rm previous wolfx.war' do
   command 'rm -f /var/lib/tomcat/webapps/wolfx.war'
   only_if { ::File.exists? '[/var/lib/tomcat/webapps/wolfx.war]' } 
+  action :nothing
+  notifies :run, 'execute[cp war wolfx to tomcat home]', :immediately
 end
 
 execute 'cp war wolfx to tomcat home' do
