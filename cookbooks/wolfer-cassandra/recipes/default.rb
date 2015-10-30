@@ -15,12 +15,13 @@ end
 execute 'untar cassandra' do
   command 'tar -xzvf /tmp/apache-cassandra.tar.gz -C /tmp'
   action :nothing
-  notifies :run, 'execute[move cassandra to opt dir]', :immediately  
+  not_if {::File.exists?("/tmp/apache-cassandra-3.0.0-rc2")} 
 end
 
 execute 'move cassandra to opt dir' do
   command 'mv /tmp/apache-cassandra-3.0.0-rc2 /opt/apache-cassandra'
-  action :nothing
+  action :run
+  only_if {::File.exists?("/tmp/apache-cassandra-3.0.0-rc2")}
 end
 
 
