@@ -7,16 +7,20 @@
 # All rights reserved - Do Not Redistribute
 #
 
-execute "yum update" do
-  command "yum update -y"
+execute 'yum update' do
+  command 'yum update -y'
   action :run
 end
 
-execute "yum groupinstall Development Tools" do
+execute 'yum groupinstall Development Tools' do
   command "yum groupinstall 'Development Tools' -y"
 end
 
 package 'net-tools' do
+  action :install
+end
+
+package 'wget' do
   action :install
 end
 
