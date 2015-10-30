@@ -7,9 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-execute 'wget cassandra' do
-  command 'wget -O /tmp/apache-cassandra.tar.gz http://www.apache.org/dyn/closer.lua/cassandra/3.0.0/apache-cassandra-3.0.0-rc2-bin.tar.gz'
-  notifies :run, 'execute[untar cassandra]', :immediately
+remote_file "/tmp/apache-cassandra.tar.gz" do
+   source "http://www.apache.org/dyn/closer.lua/cassandra/3.0.0/apache-cassandra-3.0.0-rc2-bin.tar.gz"
+   notifies :run, 'execute[untar cassandra]', :immediately
 end
 
 execute 'untar cassandra' do
