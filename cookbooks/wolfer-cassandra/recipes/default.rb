@@ -13,13 +13,13 @@ remote_file "/tmp/apache-cassandra.tar.gz" do
 end
 
 execute 'untar cassandra' do
-  command 'tar -xzvf /tmp/apache-cassandra.tar.gz -C /tmp/apache-cassandra'
+  command 'tar -xzvf /tmp/apache-cassandra.tar.gz -C /tmp'
   action :nothing
   notifies :run, 'execute[move cassandra to opt dir]', :immediately  
 end
 
 execute 'move cassandra to opt dir' do
-  command 'mv /tmp/apache-cassandra -C /opt/apache-cassandra'
+  command 'mv /tmp/apache-cassandra-3.0.0-rc2 /opt/apache-cassandra'
   action :nothing
 end
 
