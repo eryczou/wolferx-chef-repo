@@ -18,9 +18,35 @@ execute 'untar cassandra' do
 end
 
 execute 'move cassandra to opt dir' do
-  command 'mv /tmp/apache-cassandra-3.0.0-rc2 /opt/apache-cassandra'
+  command 'mv /tmp/apache-cassandra-3.0.0-rc2 /etc/apache-cassandra'
   action :run
   only_if {::File.exists?("/tmp/apache-cassandra-3.0.0-rc2")}
 end
 
+link '/usr/local/bin/cassandra' do
+  to '/etc/apache-cassandra/bin/cassandra'
+end
 
+link '/usr/local/bin/cqlsh' do
+  to '/etc/apache-cassandra/bin/cqlsh'
+end
+
+directory '/var/lib/cassandra' do
+  mode "0644"
+  recursive true
+end
+
+directory '/var/log/cassandra' do
+  mode "0644"
+  recursive true
+end
+
+template '/etc/apache-cassandra/conf/cassandra.yaml' do
+  source 'cassandra.yaml.erb'
+  mode '0644'
+end
+
+execute 'run cassandra' do
+  command 'cassandra -f'
+  action :run
+end
