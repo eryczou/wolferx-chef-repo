@@ -20,6 +20,7 @@
   "recipe[iptables_conf]",
   "recipe[nginx]",
   "recipe[java]",
+  "recipe[wolfer-cassandra]",
   "recipe[tomcat]",
   "recipe[maven]",
   "recipe[wolfer-api]"
