@@ -2,11 +2,19 @@ Overview
 ========
 
 This is the "chef-repo" for building WolferX Development Environment.
+It will automate bootstrap a complete server for your development environment.
+It majorly includes:
+	- Nginx
+	- Angular2
+	- Nodejs
+	- Tomcat
+	- Jersey
+	- Cassandra
 
 How to use
 ==========
 
-1. boot up CentOS-7 linux machine (or EC2)
+1. boot up CentOS-7 linux machine using Virtual Box (or EC2)
 2. login with *root* user or running following command with sudo
 3. update yum package management tool
 	- *CMD:* yum update
@@ -45,7 +53,7 @@ How to use
 
 8. install git & clone chef-repo
 	- *CMD:* yum install git
-	- *CMD:* git clone https://github.com/chenfanggm/wolfer-chef-repo.git
+	- *CMD:* git clone https://github.com/wolferian/wolferx-chef-repo
 9. change the name of wolferx-chef-repo to chef-repo
 	- *CMD:* mv ~/wolferx-chef-repo ~/chef-repo
 10. bootstrap the server by chef-client
@@ -57,9 +65,9 @@ Test
 	- *CMD:* ifconfig
 2. @Local add Linux hostname to hosts
 	- *CMD:* vi /etc/hosts
-	- insert "hostname ip", eg. "wolferx.com 192.168.1.15"
+	- insert "hostname ip", eg. "wolferx.com (ip to your virtual box)"
 3. @Browser 
-	- *url:* http://wolferx.com/wolfx/rest/countries
+	- *url:* http://wolferx.com:8080/wolfx/rest/test
 
 
 Congrats!
@@ -67,4 +75,4 @@ Congrats!
 
 You should have a running machine with one line deployment enabled.
 - *One Line*: chef-client
-- *Deploy*: https://github.com/chenfanggm/wolfx.git
+- *Deploy*: https://github.com/wolferian/wolferapi
