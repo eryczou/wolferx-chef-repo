@@ -20,7 +20,7 @@ end
 
 execute 'rm previous wolferapi.war' do
   command 'rm -f /var/lib/tomcat/webapps/wolferapi.war'
-  only_if { ::File.exists? '[/var/lib/tomcat/webapps/wolferapi.war]' } 
+  only_if {File.exist?("/var/lib/tomcat/webapps/wolferapi.war")} 
   action :nothing
   notifies :run, 'execute[cp war wolferapi to tomcat home]', :immediately
 end
