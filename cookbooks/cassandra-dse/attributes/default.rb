@@ -1,4 +1,4 @@
-default['java']['jdk_version'] = '7'
+default['java']['jdk_version'] = '8'
 default['java']['install_flavor'] = 'oracle'
 default['java']['set_default'] = true
 default['java']['oracle']['accept_oracle_download_terms'] = true
@@ -8,12 +8,12 @@ default['cassandra']['install_java'] = true
 default['cassandra']['notify_restart'] = false
 default['cassandra']['initial_token'] = ''
 default['cassandra']['service_name'] = 'cassandra'
-default['cassandra']['user'] = 'cassandra'
-default['cassandra']['group'] = 'cassandra'
-default['cassandra']['setup_user'] = true
+default['cassandra']['user'] = 'root'
+default['cassandra']['group'] = 'root'
+default['cassandra']['setup_user'] = false
 default['cassandra']['user_home'] = nil
 default['cassandra']['system_user'] = true
-default['cassandra']['version'] = '2.2.0'
+default['cassandra']['version'] = '2.2.3'
 
 # jamm library was added in v0.8.0 and
 # not required for later versions

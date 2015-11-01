@@ -1,4 +1,4 @@
-default['cassandra']['config']['cluster_name'] = nil
+default['cassandra']['config']['cluster_name'] = wolfercassandra
 default['cassandra']['config']['auto_bootstrap'] = true
 default['cassandra']['config']['hinted_handoff_enabled'] = true
 default['cassandra']['config']['max_hint_window_in_ms'] = 10_800_000 # 3 hours
