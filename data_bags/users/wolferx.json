@@ -1,6 +1,6 @@
 {
   "id": "wolferx",
-  "password": "$1$KCJ1r/Mo$mJz47FI3th/Bblk5y723p/",
+  "password": "$1$69UuuWs1$kgSZJ4M.C2Ymb24A2i81g1",
   "ssh_keys": [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtaGaA0FaShyx8Licis7MFqQ5TKlAGtrEx8RWE0McHkgY5e+nWuEEY0kckYpdxVtDtekal2HAAxB2uJ1U4u7FZ+/dHSTyofXSHh8ZjWOZE1YQkyBOyFclRhIEAuqvN4E2A+EZih4nhuMzQVKFDgwQ43JFhzHYHRce12Low69PYvz5W3YdOE+VGyupOo263LKAan7zctR5YGAuYJfxoens6iP0HpUjLgK8cR6xYU9zbUMSP9UCIsbrcuq5u5hbBDrzAuLfUZGcirUz6tRyInm13UYZuQj6ctcnYAL0HJw9ch5tEDE3msqQ5qJP7yNNqLbsTMVqfnGW5C/TXhY0a/ILj chenfanggm@hotmail.com"
   ],
@@ -12,7 +12,7 @@
   "shell": "\/bin\/bash",
   "comment": "wolferian_the_1st",
   "nagios": {
-    "email": "wolferian@gmail.com"
+    "email": "wolferiangm@gmail.com"
   },
   "action": "create"
 }

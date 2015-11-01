@@ -12,8 +12,6 @@
   },
   "run_list": [
   "recipe[wolfer-init]",
-  "recipe[group]",
-  "recipe[users]",
   "recipe[sudo]",
   "recipe[git]",
   "recipe[iptables]",
