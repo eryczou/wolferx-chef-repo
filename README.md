@@ -67,8 +67,10 @@ Test
 	- *CMD:* vi /etc/hosts
 	- insert "hostname ip", eg. "wolferx.com (ip to your virtual box)"
 3. @Browser 
-	- *url:* http://wolferx.com:8080/wolfx/rest/test
-
+	- *url:* http://wolferx.com:8080/wolferapi/rest/test
+4. @Cassandra
+	- *GUI Tool:* https://academy.datastax.com/downloads/ops-center?destination=downloads/ops-center&dxt=DX#devCenter 
+	- connet to ip_address of VM, port 9042
 
 Congrats!
 =========
