@@ -66,8 +66,8 @@ end
 
 default['cassandra']['data_dir'] = data_dir
 
-default['cassandra']['max_heap_size'] = nil
-default['cassandra']['heap_new_size'] = nil
+default['cassandra']['max_heap_size'] = "64M"
+default['cassandra']['heap_new_size'] = "12M"
 default['cassandra']['xss'] = '256k'
 default['cassandra']['vnodes'] = true
 default['cassandra']['enable_assertions'] = true
@@ -89,7 +89,7 @@ default['cassandra']['jamm']['sha256sum'] = 'b599dc7a58b305d697bbb3d897c91f342bb
 default['cassandra']['log_config_files'] = node['cassandra']['version'] =~ /^[0-1]|^2.0/ ? %w(log4j-server.properties) : %w(logback.xml logback-tools.xml)
 
 # Heap Dump
-default['cassandra']['heap_dump'] = true
+default['cassandra']['heap_dump'] = false
 default['cassandra']['heap_dump_dir'] = nil
 
 # GC tuning options
