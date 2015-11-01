@@ -2,31 +2,31 @@
 # Cookbook Name:: wolfer-api
 # Recipe:: default
 #
-# Copyright 2015, YOUR_COMPANY_NAME
+# Copyright 2015, WolferX
 #
 # All rights reserved - Do Not Redistribute
 #
 
-git '/site/wolfx' do
+git '/site/wolferapi' do
   repository 'https://github.com/wolferian/wolferapi.git'
   revision 'master'
   action :sync
 end
 
-execute 'mvn clean install wolfx' do
-  command 'mvn -f /site/wolfx/pom.xml clean install'
-  notifies :run, 'execute[rm previous wolfx.war]', :immediately
+execute 'mvn clean install wolferapi' do
+  command 'mvn -f /site/wolferapi/pom.xml clean install'
+  notifies :run, 'execute[rm previous wolferapi.war]', :immediately
 end
 
-execute 'rm previous wolfx.war' do
-  command 'rm -f /var/lib/tomcat/webapps/wolfx.war'
-  only_if { ::File.exists? '[/var/lib/tomcat/webapps/wolfx.war]' } 
+execute 'rm previous wolferapi.war' do
+  command 'rm -f /var/lib/tomcat/webapps/wolferapi.war'
+  only_if { ::File.exists? '[/var/lib/tomcat/webapps/wolferapi.war]' } 
   action :nothing
-  notifies :run, 'execute[cp war wolfx to tomcat home]', :immediately
+  notifies :run, 'execute[cp war wolferapi to tomcat home]', :immediately
 end
 
-execute 'cp war wolfx to tomcat home' do
-  command 'cp /site/wolfx/target/wolfx.war /var/lib/tomcat/webapps/'
+execute 'cp war wolferapi to tomcat home' do
+  command 'cp /site/wolferapi/target/wolferapi.war /var/lib/tomcat/webapps/'
 end
 
 service "tomcat" do
