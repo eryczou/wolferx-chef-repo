@@ -21,7 +21,8 @@
   "recipe[cassandra-dse]",
   "recipe[tomcat]",
   "recipe[maven]",
-  "recipe[wolfer-api]"
+  "recipe[wolfer-api]",
+  "recipe[wolfer-end]"
 ]
 
 }
