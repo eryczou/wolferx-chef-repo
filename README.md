@@ -41,7 +41,6 @@ How to use
 	local_mode 'true' <br/>
 	node_name 'node' <br/>
 	node_path '/root/chef-repo/nodes' <br/>
-
 7. create RSA key pair for github
 	(Following is optional, only no id_rsa && id_rsa.pub file exist in ~/.ssh)
 	- *CMD:* mkdir ~/.ssh
@@ -50,7 +49,6 @@ How to use
 	- *CMD:* ssh-keygen -t rsa -b 4096 -C "wolferiangm@gmail.com"
 	- keep enter empty when CL ask you for path & passphrase
 	- add id_rsa.pub to github (ask Chen for github access)
-
 8. install git & clone chef-repo
 	- *CMD:* yum install git
 	- *CMD:* git clone https://github.com/wolferian/wolferx-chef-repo
@@ -58,6 +56,8 @@ How to use
 	- *CMD:* mv ~/wolferx-chef-repo ~/chef-repo
 10. bootstrap the server by chef-client
 	- *CMD:* chef-client
+11. deploy cassandra schema for testing
+	- *CMD:* cqlsh -f ~/chef-repo/cassandra_schema/testTable.cql
 
 Test
 ====
