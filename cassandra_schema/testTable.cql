@@ -1,7 +1,7 @@
-CREATE KEYSPACE wolferx
+CREATE KEYSPACE IF NOT EXISTS wolferx
   WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
   
-CREATE TABLE wolferx.test (
+CREATE TABLE  IF NOT EXISTS wolferx.test (
   test_id int,
   message Varchar,
   PRIMARY KEY (test_id)
@@ -9,6 +9,3 @@ CREATE TABLE wolferx.test (
 
 INSERT INTO wolferx.test (test_id, message)
 VALUES (1, 'CassandraTest: Passed');
-
-SELECT *
-FROM wolferx.test;
