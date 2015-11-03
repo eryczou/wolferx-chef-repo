@@ -16,6 +16,8 @@ How to use
 
 1. boot up CentOS-7 linux machine using Virtual Box (or EC2)
 2. login with *root* user or running following command with sudo
+	- *Suggest:* to add a password for root, somehow the system will add a password for you if you don't
+	- *CMD:* passwd root
 3. update yum package management tool
 	- *CMD:* yum update
 4. install chef-client by rpm
@@ -56,11 +58,13 @@ How to use
 	- *CMD:* mv ~/wolferx-chef-repo ~/chef-repo
 10. bootstrap the server by chef-client
 	- *CMD:* chef-client
+	- 1st time may fail at tomcat trying to add SSL, if so, just run chef-client again
 11. deploy cassandra schema for testing
 	- *CMD:* cqlsh -f ~/chef-repo/cassandra_schema/testTable.cql
 
 Test
 ====
+
 1. @Linux get ip address
 	- *CMD:* ifconfig
 2. @Local add Linux hostname to hosts
