@@ -65,11 +65,11 @@ How to use
 Test
 ====
 
-1. @Linux get ip address
+1. @Linux get ip address of the server
 	- *CMD:* ifconfig
 2. @Local add Linux hostname to hosts
 	- *CMD:* vi /etc/hosts
-	- insert "hostname ip", eg. "wolferx.com (ip to your virtual box)"
+	- insert "hostname ip", eg. "x.x.x.x wolferx.com"
 3. @Browser 
 	- *url:* http://wolferx.com:8080/wolferapi/rest/test
 4. @Cassandra
