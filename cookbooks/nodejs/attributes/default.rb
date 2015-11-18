@@ -19,7 +19,7 @@
 
 case node['platform_family']
 when 'smartos', 'rhel', 'debian', 'fedora', 'mac_os_x'
-  default['nodejs']['install_method'] = 'nodejs_from_binary'
+  default['nodejs']['install_method'] = 'binary'
 else
   default['nodejs']['install_method'] = 'source'
 end
