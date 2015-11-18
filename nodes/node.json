@@ -21,7 +21,9 @@
   "recipe[tomcat]",
   "recipe[maven]",
   "recipe[wolfer-api]",
-  "recipe[wolfer-end]"
+  "recipe[wolfer-end]",
+  "recipe[nodejs]",
+  "recipe[wolfer-web]"
 ]
 
 }
