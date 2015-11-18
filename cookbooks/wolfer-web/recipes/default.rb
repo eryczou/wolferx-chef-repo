@@ -34,25 +34,26 @@ git '/site/wolferweb' do
 end
 
 execute 'npm install wolerweb' do
-  command 'cd /site/wolferweb'
-end
-
-execute 'npm install wolerweb' do
+  cwd '/site/wolferweb'
   command 'npm install'
 end
 
 execute 'bower install wolerweb' do
+  cwd '/site/wolferweb'
   command 'bower install'
 end
 
 execute 'gulp build wolerweb' do
+  cwd '/site/wolferweb'
   command 'gulp build'
 end
 
 execute 'forever stop all' do
+  cwd '/site/wolferweb'
   command 'forever stopall'
 end
 
 execute 'forever wolferweb' do
+  cwd '/site/wolferweb'
   command 'npm run forever'
 end
