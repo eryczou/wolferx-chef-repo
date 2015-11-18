@@ -38,7 +38,11 @@ execute 'npm install wolerweb' do
 end
 
 execute 'npm install wolerweb' do
-  command 'npm install /site/wolferweb'
+  command 'npm install'
+end
+
+execute 'bower install wolerweb' do
+  command 'bower install'
 end
 
 execute 'gulp build wolerweb' do
