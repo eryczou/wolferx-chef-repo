@@ -7,6 +7,12 @@
 # Port 80 for http
 -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 
+# Port 3000 for wolfer-web
+-A INPUT -p tcp -m tcp --dport 3000 -j ACCEPT
+
+# Port 8080 for wolfer-api
+-A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
+
 -P OUTPUT ACCEPT
 
 #*nat
