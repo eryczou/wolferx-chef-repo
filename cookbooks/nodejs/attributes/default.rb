@@ -19,14 +19,14 @@
 
 case node['platform_family']
 when 'smartos', 'rhel', 'debian', 'fedora', 'mac_os_x'
-  default['nodejs']['install_method'] = 'package'
+  default['nodejs']['install_method'] = 'nodejs_from_binary'
 else
   default['nodejs']['install_method'] = 'source'
 end
 
 default['nodejs']['engine'] = 'node' # or iojs
 
-default['nodejs']['version'] = '0.10.26'
+default['nodejs']['version'] = '5.1.0'
 
 default['nodejs']['prefix_url']['node'] = 'http://nodejs.org/dist/'
 default['nodejs']['prefix_url']['iojs'] = 'http://iojs.org/dist/'
