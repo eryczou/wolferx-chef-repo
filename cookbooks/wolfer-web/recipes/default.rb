@@ -40,7 +40,7 @@ end
 
 execute 'bower install wolerweb' do
   cwd '/site/wolferweb'
-  command 'bower install'
+  command 'bower install --allow-root --config.interactive=false'
 end
 
 execute 'gulp build wolerweb' do
