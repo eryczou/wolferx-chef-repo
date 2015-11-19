@@ -8,9 +8,17 @@
 #
 include_recipe "mongodb::default"
 
+directory "/mongodata/db" do
+    mode '0755'
+    owner 'root'
+    group 'root'
+    action :create
+    recursive true
+end
+
 mongodb_instance "chef_mongo" do
   port node['mongodb']['port']
-  dbpath "/data/"
+  dbpath "/mongodata/"
 end
 
 execute 'npm install -g gulp' do
