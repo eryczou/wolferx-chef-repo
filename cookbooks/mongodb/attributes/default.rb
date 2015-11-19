@@ -39,8 +39,8 @@ default[:mongodb][:auto_configure][:sharding] = true
 default[:mongodb][:configserver_url] = nil
 
 default[:mongodb][:root_group] = 'root'
-default[:mongodb][:user] = 'root'
-default[:mongodb][:group] = 'root'
+default[:mongodb][:user] = 'mongodb'
+default[:mongodb][:group] = 'mongodb'
 
 default[:mongodb][:init_dir] = '/etc/init.d'
 default[:mongodb][:init_script_template] = 'debian-mongodb.init.erb'
@@ -76,8 +76,8 @@ when 'rhel', 'fedora'
   # verified for RHEL5,6 Fedora 18,19
   default[:mongodb][:package_name] = 'mongodb-server'
   default[:mongodb][:sysconfig_file] = '/etc/sysconfig/mongodb'
-  default[:mongodb][:user] = 'root'
-  default[:mongodb][:group] = 'root'
+  default[:mongodb][:user] = 'mongod'
+  default[:mongodb][:group] = 'mongod'
   default[:mongodb][:init_script_template] = 'redhat-mongodb.init.erb'
   default[:mongodb][:default_init_name] = 'mongod'
   default[:mongodb][:instance_name] = 'mongod'
