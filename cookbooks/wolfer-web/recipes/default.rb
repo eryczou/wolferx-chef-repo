@@ -8,17 +8,8 @@
 #
 include_recipe "mongodb::default"
 
-directory "/mongodata/db" do
-    mode '0755'
-    owner 'root'
-    group 'root'
-    action :create
-    recursive true
-end
-
 mongodb_instance "chef_mongo" do
   port node['mongodb']['port']
-  dbpath "/mongodata/"
 end
 
 execute 'npm install -g gulp' do
@@ -39,6 +30,18 @@ end
 
 execute 'npm install -g forever' do
   command 'npm install -g forever'
+end
+
+bash 'export npm bin to PATH' do
+  cwd '/root' 
+  code <<-EOH
+    if [[ :$PATH: == *:/usr/local/nodejs-binary-5.1.0/bin:* ]]; then
+      echo '# O.K., the directory /usr/local/nodejs-binary-5.1.0/bin is on the path'
+    else
+      echo 'export PATH=$PATH:/usr/local/nodejs-binary-5.1.0/bin'  >> ~/.bash_profile
+      export PATH=$PATH:/usr/local/nodejs-binary-5.1.0/bin
+    fi
+    EOH
 end
 
 git '/site/wolferweb' do
