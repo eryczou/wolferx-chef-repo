@@ -6,6 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "mongodb::default"
+
+mongodb_instance "chef_mongo" do
+  port node['mongodb']['port']
+  dbpath "/data/"
+end
 
 execute 'npm install -g gulp' do
   command 'npm install -g gulp'
