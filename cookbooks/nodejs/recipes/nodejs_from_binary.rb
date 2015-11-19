@@ -53,7 +53,7 @@ end
 ark archive_name do
   url nodejs_bin_url
   version node['nodejs']['version']
-  checksum checksum
+  prefix_bin '/usr/bin'
   has_binaries binaries
   action :install
 end
