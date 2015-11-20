@@ -41,6 +41,10 @@ execute 'add npm /bin to PATH' do
   command 'source ~/chef-repo/wolfer_script/export_npm_to_path.sh'
 end 
 
+magic_shell_environment "PATH" do
+  value "$PATH:" + '/usr/local/nodejs-binary-5.1.0/bin'
+end
+
 git '/site/wolferweb' do
   repository 'https://github.com/wolferian/wolferweb.git'
   revision 'master'
