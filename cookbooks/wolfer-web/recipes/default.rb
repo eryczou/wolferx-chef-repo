@@ -8,7 +8,7 @@
 #
 include_recipe "mongodb::default"
 
-mongodb_instance "chef_mongo" do
+mongodb_instance "wolfer_mongo" do
   port node['mongodb']['port']
 end
 

@@ -24,15 +24,15 @@ default[:mongodb][:shard_name] = 'default'
 
 # replica options
 default[:mongodb][:replica_arbiter_only] = false
-default[:mongodb][:replica_build_indexes] = true
+default[:mongodb][:replica_build_indexes] = false
 default[:mongodb][:replica_hidden] = false
 default[:mongodb][:replica_slave_delay] = 0
 default[:mongodb][:replica_priority] = 1
 default[:mongodb][:replica_tags] = {}
 default[:mongodb][:replica_votes] = 1
 
-default[:mongodb][:auto_configure][:replicaset] = true
-default[:mongodb][:auto_configure][:sharding] = true
+default[:mongodb][:auto_configure][:replicaset] = false
+default[:mongodb][:auto_configure][:sharding] = false
 
 # don't use the node's fqdn, but this url instead; something like 'ec2-x-y-z-z.aws.com' or 'cs1.domain.com' (no port)
 # if not provided, will fall back to the FQDN
