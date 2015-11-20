@@ -43,24 +43,17 @@ How to use
 	local_mode 'true' <br/>
 	node_name 'node' <br/>
 	node_path '/root/chef-repo/nodes' <br/>
-7. create RSA key pair for github
-	(Following is optional, only no id_rsa && id_rsa.pub file exist in ~/.ssh)
-	- *CMD:* mkdir ~/.ssh
-	- *CMD:* cd ~/.ssh
-	- *CMD:* ls -al
-	- *CMD:* ssh-keygen -t rsa -b 4096 -C "wolferiangm@gmail.com"
-	- keep enter empty when CL ask you for path & passphrase
-	- add id_rsa.pub to github (ask Chen for github access)
-8. install git & clone chef-repo
+7. install git & clone chef-repo
 	- *CMD:* yum install git
 	- *CMD:* git clone https://github.com/wolferian/wolferx-chef-repo
-9. change the name of wolferx-chef-repo to chef-repo
+8. change the name of wolferx-chef-repo to chef-repo
 	- *CMD:* mv ~/wolferx-chef-repo ~/chef-repo
-10. bootstrap the server by chef-client
+9. bootstrap the server by chef-client
 	- *CMD:* chef-client
 	- 1st time may fail at tomcat trying to add SSL, if so, just run chef-client again
-11. deploy cassandra schema for testing
-	- *CMD:* cqlsh -f ~/chef-repo/cassandra_schema/testTable.cql
+10. deploy database schema for testing
+	- *CMD:* cqlsh -f ~/chef-repo/wolfer_schema/cassandra/testTable.cql
+        - *CMD:* mongorestore ~/chef-repo/wolfer_schema/mongodb/newedenfaces.bson -d wolferweb -c characters
 
 Test
 ====
@@ -72,6 +65,7 @@ Test
 	- insert "hostname ip", eg. "x.x.x.x wolferx.com"
 3. @Browser 
 	- *url:* http://wolferx.com:8080/wolferapi/rest/test
+	- *url:* http://wolferx.com:3000
 4. @Cassandra
 	- *GUI Tool:* https://academy.datastax.com/downloads/ops-center?destination=downloads/ops-center&dxt=DX#devCenter 
 	- connet to ip_address of VM, port 9042
