@@ -1,5 +1,13 @@
 {
   "name": "wolferx",
+  "override": {
+    "mongodb": {
+      "package_name": "mongodb-org"
+    },
+    "nodejs": {
+      "install_method": "binary"
+    }
+  },
   "normal": {
     "tags": [
 
@@ -7,45 +15,9 @@
     "tomcat": {
       "keystore_password": "uTRkMKaR7p01aJgLriUT",
       "truststore_password": "TMpdDhy0Iml1prP2syrG"
-    },
-    "name": "wolferx",
-    "normal": {
-      "tags": [
-
-      ],
-      "tomcat": {
-        "keystore_password": "uTRkMKaR7p01aJgLriUT",
-        "truststore_password": "TMpdDhy0Iml1prP2syrG"
-      }
     }
   },
   "default": {
-    "authorization": {
-      "sudo": {
-        "groups": [
-          "sysadmin"
-        ],
-        "users": [
-
-        ],
-        "passwordless": false,
-        "include_sudoers_d": false,
-        "agent_forwarding": false,
-        "sudoers_defaults": [
-          "!lecture,tty_tickets,!fqdn"
-        ],
-        "command_aliases": [
-
-        ],
-        "env_keep_add": [
-
-        ],
-        "env_keep_subtract": [
-
-        ],
-        "prefix": "/etc"
-      }
-    },
     "nginx": {
       "sites": {
         "cfweb.com": {
@@ -72,9 +44,9 @@
       "ark_retries": 0,
       "ark_retry_delay": 2,
       "ark_timeout": 600,
-      "install_flavor": "openjdk",
+      "install_flavor": "oracle",
       "oracle": {
-        "accept_oracle_download_terms": false,
+        "accept_oracle_download_terms": true,
         "jce": {
           "enabled": false,
           "8": {
@@ -264,15 +236,87 @@
           }
         }
       },
-      "java_home": "/usr/lib/jvm/java-1.8.0"
+      "java_home": "/usr/lib/jvm/java"
     },
-    "openssl": {
-      "packages": [
+    "apt": {
+      "cacher-client": {
+        "restrict_environment": false
+      },
+      "cacher_dir": "/var/cache/apt-cacher-ng",
+      "cacher_interface": null,
+      "cacher_port": 3142,
+      "cacher_ssl_support": false,
+      "caching_server": false,
+      "compiletime": false,
+      "compile_time_update": false,
+      "key_proxy": "",
+      "cache_bypass": {
 
-      ],
-      "restart_services": [
+      },
+      "periodic_update_min_delay": 86400,
+      "launchpad_api_version": "1.0",
+      "unattended_upgrades": {
+        "enable": false,
+        "update_package_lists": true,
+        "allowed_origins": [
+          "Centos "
+        ],
+        "package_blacklist": [
 
+        ],
+        "auto_fix_interrupted_dpkg": false,
+        "minimal_steps": false,
+        "install_on_shutdown": false,
+        "mail": null,
+        "mail_only_on_error": true,
+        "remove_unused_dependencies": false,
+        "automatic_reboot": false,
+        "automatic_reboot_time": "now",
+        "dl_limit": null
+      },
+      "confd": {
+        "install_recommends": true,
+        "install_suggests": false
+      }
+    },
+    "chef_handler": {
+      "root_user": "root",
+      "root_group": "root",
+      "handler_path": "/etc/chef/local-mode-cache/handlers"
+    },
+    "windows": {
+      "allow_pending_reboots": true,
+      "allow_reboot_on_failure": false,
+      "rubyzipversion": null,
+      "reboot_timeout": 60
+    },
+    "7-zip": {
+      "url": "http://downloads.sourceforge.net/sevenzip/7z922-x64.msi",
+      "checksum": "f09bf515289eea45185a4cc673e3bbc18ce608c55b4cf96e77833435c9cdf3dc",
+      "package_name": "7-Zip 9.22 (x64 edition)",
+      "home": "\\7-zip"
+    },
+    "ark": {
+      "apache_mirror": "http://apache.mirrors.tds.net",
+      "prefix_root": "/usr/local",
+      "prefix_bin": "/usr/local/bin",
+      "prefix_home": "/usr/local",
+      "tar": "/bin/tar",
+      "package_dependencies": [
+        "libtool",
+        "autoconf",
+        "unzip",
+        "rsync",
+        "make",
+        "gcc"
       ]
+    },
+    "ulimit": {
+      "pam_su_template_cookbook": null,
+      "users": {
+
+      },
+      "security_limits_directory": "/etc/security/limits.d"
     },
     "yum": {
       "main": {
@@ -420,6 +464,277 @@
         "managed": true
       }
     },
+    "cassandra": {
+      "install_method": "datastax",
+      "install_java": true,
+      "notify_restart": false,
+      "initial_token": "",
+      "service_name": "cassandra",
+      "user": "root",
+      "group": "root",
+      "setup_user": false,
+      "user_home": null,
+      "system_user": true,
+      "version": "2.2.3",
+      "setup_jamm": true,
+      "pid_dir": "/var/run/cassandra",
+      "dir_mode": "0755",
+      "service_action": [
+        "enable",
+        "start"
+      ],
+      "jmx_port": 7199,
+      "limits": {
+        "memlock": "unlimited",
+        "nofile": 48000,
+        "nproc": "unlimited"
+      },
+      "templates_cookbook": "cassandra-dse",
+      "root_dir": "/var/lib/cassandra",
+      "log_dir": "/var/log/cassandra",
+      "rootlogger": "INFO,stdout,R",
+      "seeds": "10.10.60.75",
+      "seed_discovery": {
+        "use_chef_search": false,
+        "count": 3,
+        "search_role": "cassandra-seed",
+        "search_query": null
+      },
+      "jbod": {
+        "slices": null,
+        "dir_name_prefix": "data"
+      },
+      "logback": {
+        "file": {
+          "max_file_size": "20MB",
+          "max_index": 20,
+          "min_index": 1,
+          "pattern": "%-5level [%thread] %date{ISO8601} %F:%L - %msg%n"
+        },
+        "stdout": {
+          "enable": true,
+          "pattern": "%-5level %date{HH:mm:ss,SSS} %msg%n"
+        }
+      },
+      "log4j": {
+
+      },
+      "data_dir": [
+        "/var/lib/cassandra/data"
+      ],
+      "max_heap_size": "64M",
+      "heap_new_size": "12M",
+      "xss": "256k",
+      "vnodes": true,
+      "enable_assertions": true,
+      "internode_compression": "all",
+      "jmx_server_hostname": false,
+      "metrics_reporter": {
+        "enabled": false,
+        "name": "metrics-graphite",
+        "jar_url": "http://search.maven.org/remotecontent?filepath=com/yammer/metrics/metrics-graphite/2.2.0/metrics-graphite-2.2.0.jar",
+        "sha256sum": "6b4042aabf532229f8678b8dcd34e2215d94a683270898c162175b1b13d87de4",
+        "jar_name": "metrics-graphite-2.2.0.jar",
+        "config": {
+
+        }
+      },
+      "jamm": {
+        "version": "0.3.1",
+        "base_url": "http://repo1.maven.org/maven2/com/github/jbellis/jamm/0.3.1",
+        "jar_name": "jamm-0.3.1.jar",
+        "sha256sum": "b599dc7a58b305d697bbb3d897c91f342bbddefeaaf10a3fa156c93efca397ef"
+      },
+      "log_config_files": [
+        "logback.xml",
+        "logback-tools.xml"
+      ],
+      "heap_dump": false,
+      "heap_dump_dir": null,
+      "gc_survivor_ratio": 8,
+      "gc_max_tenuring_threshold": 1,
+      "gc_cms_initiating_occupancy_fraction": 75,
+      "jna": {
+        "base_url": "https://github.com/twall/jna/raw/4.0/dist",
+        "jar_name": "jna.jar",
+        "sha256sum": "dac270b6441ce24d93a96ddb6e8f93d8df099192738799a6f6fcfc2b2416ca19"
+      },
+      "tarball": {
+        "url": "auto"
+      },
+      "opscenter": {
+        "version": null,
+        "server": {
+          "package_name": "opscenter",
+          "port": "8888",
+          "interface": "0.0.0.0",
+          "authentication": false
+        },
+        "agent": {
+          "package_name": "datastax-agent",
+          "download_url": null,
+          "checksum": null,
+          "install_dir": "/opt",
+          "install_folder_name": "opscenter_agent",
+          "binary_name": "opscenter-agent",
+          "server_host": null,
+          "use_chef_search": true,
+          "server_role": "opscenter_server",
+          "use_ssl": true,
+          "conf_dir": "/var/lib/datastax-agent/conf"
+        }
+      },
+      "config": {
+        "cluster_name": "wolfercassandra",
+        "auto_bootstrap": true,
+        "hinted_handoff_enabled": true,
+        "max_hint_window_in_ms": 10800000,
+        "hinted_handoff_throttle_in_kb": 1024,
+        "max_hints_delivery_threads": 2,
+        "permissions_validity_in_ms": 2000,
+        "authenticator": "org.apache.cassandra.auth.AllowAllAuthenticator",
+        "authorizer": "org.apache.cassandra.auth.AllowAllAuthorizer",
+        "partitioner": "org.apache.cassandra.dht.Murmur3Partitioner",
+        "disk_failure_policy": "stop",
+        "key_cache_size_in_mb": null,
+        "key_cache_save_period": 14400,
+        "key_cache_keys_to_save": null,
+        "row_cache_size_in_mb": 0,
+        "row_cache_save_period": 0,
+        "row_cache_keys_to_save": null,
+        "row_cache_provider": "SerializingCacheProvider",
+        "commitlog_sync": "periodic",
+        "commitlog_sync_batch_window_in_ms": 50,
+        "commitlog_sync_period_in_ms": 10000,
+        "commitlog_segment_size_in_mb": 32,
+        "concurrent_reads": 16,
+        "concurrent_writes": 8,
+        "trickle_fsync": false,
+        "trickle_fsync_interval_in_kb": 10240,
+        "listen_address": "10.10.60.75",
+        "broadcast_address": "10.10.60.75",
+        "rpc_address": "0.0.0.0",
+        "rpc_port": "9160",
+        "storage_port": 7000,
+        "ssl_storage_port": 7001,
+        "native_transport_port": "9042",
+        "start_native_transport": true,
+        "start_rpc": true,
+        "rpc_keepalive": true,
+        "rpc_server_type": "hsha",
+        "rpc_min_threads": 4,
+        "rpc_max_threads": 16,
+        "thrift_framed_transport_size_in_mb": 15,
+        "thrift_max_message_length_in_mb": 16,
+        "incremental_backups": false,
+        "snapshot_before_compaction": false,
+        "auto_snapshot": true,
+        "column_index_size_in_kb": 64,
+        "compaction_throughput_mb_per_sec": 0,
+        "read_request_timeout_in_ms": 10000,
+        "range_request_timeout_in_ms": 10000,
+        "write_request_timeout_in_ms": 10000,
+        "truncate_request_timeout_in_ms": 60000,
+        "request_timeout_in_ms": 10000,
+        "cross_node_timeout": false,
+        "streaming_socket_timeout_in_ms": 0,
+        "stream_throughput_outbound_megabits_per_sec": 400,
+        "endpoint_snitch": "SimpleSnitch",
+        "dynamic_snitch_update_interval_in_ms": 100,
+        "dynamic_snitch_reset_interval_in_ms": 600000,
+        "dynamic_snitch_badness_threshold": 0.1,
+        "request_scheduler": "org.apache.cassandra.scheduler.NoScheduler",
+        "phi_convict_threshold": 8,
+        "index_interval": 128,
+        "num_tokens": 256,
+        "internode_compression": "all",
+        "inter_dc_tcp_nodelay": true,
+        "broadcast_rpc_address": "10.10.60.75",
+        "tombstone_failure_threshold": 100000,
+        "tombstone_warn_threshold": 1000,
+        "sstable_preemptive_open_interval_in_mb": 50,
+        "memtable_allocation_type": "heap_buffers",
+        "index_summary_capacity_in_mb": null,
+        "index_summary_resize_interval_in_minutes": 60,
+        "concurrent_counter_writes": 4,
+        "counter_cache_save_period": 7200,
+        "counter_cache_size_in_mb": null,
+        "counter_write_request_timeout_in_ms": 5000,
+        "commit_failure_policy": "stop",
+        "cas_contention_timeout_in_ms": 1000,
+        "batch_size_warn_threshold_in_kb": 5,
+        "batchlog_replay_throttle_in_kb": 1024,
+        "server_encryption_options": {
+          "internode_encryption": "none",
+          "keystore": "conf/.keystore",
+          "keystore_password": "cassandra",
+          "truststore": "conf/.truststore",
+          "truststore_password": "cassandra",
+          "enable_advanced": false
+        },
+        "client_encryption_options": {
+          "enabled": false,
+          "keystore": "conf/.keystore",
+          "keystore_password": "cassandra",
+          "require_client_auth": false,
+          "enable_advanced": false
+        },
+        "data_file_directories": [
+          "/var/lib/cassandra/data"
+        ],
+        "saved_caches_directory": "/var/lib/cassandra/saved_caches",
+        "commitlog_directory": "/var/lib/cassandra/commitlog",
+        "seed_provider": [
+          {
+            "class_name": "org.apache.cassandra.locator.SimpleSeedProvider",
+            "parameters": [
+              {
+                "seeds": "10.10.60.75"
+              }
+            ]
+          }
+        ]
+      },
+      "package_name": "dsc22",
+      "release": "1",
+      "yum": {
+        "repo": "datastax",
+        "description": "DataStax Repo for Apache Cassandra",
+        "baseurl": "http://rpm.datastax.com/community",
+        "mirrorlist": null,
+        "gpgcheck": false,
+        "enabled": true,
+        "options": "",
+        "action": "create"
+      },
+      "apt": {
+        "repo": "datastax",
+        "uri": "https://debian.datastax.com/community/",
+        "distribution": "stable",
+        "components": [
+          "main"
+        ],
+        "repo_key": "https://debian.datastax.com/debian/repo_key",
+        "action": "add"
+      },
+      "setup_jna": false,
+      "skip_jna": false,
+      "cassandra_old_version_20": false,
+      "installation_dir": "/usr/share/cassandra",
+      "bin_dir": "/usr/share/cassandra/bin",
+      "lib_dir": "/usr/share/cassandra/lib",
+      "commitlog_dir": "/var/lib/cassandra/commitlog",
+      "saved_caches_dir": "/var/lib/cassandra/saved_caches",
+      "conf_dir": "/etc/cassandra/conf"
+    },
+    "openssl": {
+      "packages": [
+
+      ],
+      "restart_services": [
+
+      ]
+    },
     "yum-epel": {
       "repositories": [
         "epel",
@@ -482,38 +797,6 @@
       "lib_dir": "/usr/share/tomcat/lib",
       "endorsed_dir": "/usr/share/tomcat/lib/endorsed"
     },
-    "chef_handler": {
-      "root_user": "root",
-      "root_group": "root",
-      "handler_path": "/etc/chef/local-mode-cache/handlers"
-    },
-    "windows": {
-      "allow_pending_reboots": true,
-      "allow_reboot_on_failure": false,
-      "rubyzipversion": null,
-      "reboot_timeout": 60
-    },
-    "7-zip": {
-      "url": "http://downloads.sourceforge.net/sevenzip/7z922-x64.msi",
-      "checksum": "f09bf515289eea45185a4cc673e3bbc18ce608c55b4cf96e77833435c9cdf3dc",
-      "package_name": "7-Zip 9.22 (x64 edition)",
-      "home": "\\7-zip"
-    },
-    "ark": {
-      "apache_mirror": "http://apache.mirrors.tds.net",
-      "prefix_root": "/usr/local",
-      "prefix_bin": "/usr/local/bin",
-      "prefix_home": "/usr/local",
-      "tar": "/bin/tar",
-      "package_dependencies": [
-        "libtool",
-        "autoconf",
-        "unzip",
-        "rsync",
-        "make",
-        "gcc"
-      ]
-    },
     "maven": {
       "version": 3,
       "m2_home": "/usr/local/maven",
@@ -537,6 +820,208 @@
       ],
       "setup_bin": false,
       "install_java": true
+    },
+    "build-essential": {
+      "compile_time": false
+    },
+    "homebrew": {
+      "owner": null,
+      "auto-update": true,
+      "casks": [
+
+      ],
+      "formulas": [
+
+      ],
+      "taps": [
+
+      ]
+    },
+    "nodejs": {
+      "install_method": "binary",
+      "engine": "node",
+      "version": "5.1.0",
+      "prefix_url": {
+        "node": "http://nodejs.org/dist/",
+        "iojs": "http://iojs.org/dist/"
+      },
+      "source": {
+        "url": null,
+        "checksum": "ef5e4ea6f2689ed7f781355012b942a2347e0299da0804a58de8e6281c4b1daa"
+      },
+      "binary": {
+        "url": null,
+        "checksum": {
+          "linux_x64": "305bf2983c65edea6dd2c9f3669b956251af03523d31cf0a0471504fd5920aac",
+          "linux_x86": "8fa2d952556c8b5aa37c077e2735c972c522510facaa4df76d4244be88f4dc0f",
+          "linux_arm-pi": "52a0f6ed9c0be1ea5f79de6527c481c1b803edbea6413a4fdc65a45ad401565d"
+        }
+      },
+      "make_threads": 1,
+      "npm": {
+        "install_method": "embedded",
+        "version": "latest"
+      },
+      "install_repo": true,
+      "packages": [
+        "nodejs",
+        "nodejs-devel",
+        "npm"
+      ]
+    },
+    "python": {
+      "install_method": "package",
+      "prefix_dir": "/usr",
+      "binary": "/usr/bin/python",
+      "url": "http://www.python.org/ftp/python",
+      "version": "2.7.5",
+      "checksum": "3b477554864e616a041ee4d7cef9849751770bc7c39adaf78a94ea145c488059",
+      "configure_options": [
+        "--prefix=/usr"
+      ],
+      "make_options": [
+        "install"
+      ],
+      "pip_location": "/usr/bin/pip",
+      "virtualenv_location": "/usr/bin/virtualenv",
+      "setuptools_version": null,
+      "virtualenv_version": null
+    },
+    "packagecloud": {
+      "base_repo_path": "/install/repositories/",
+      "gpg_key_path": "/gpg.key",
+      "hostname_override": null,
+      "default_type": "rpm"
+    },
+    "runit": {
+      "sv_bin": "/sbin/sv",
+      "chpst_bin": "/sbin/chpst",
+      "service_dir": "/etc/service",
+      "sv_dir": "/etc/sv",
+      "lsb_init_dir": "/etc/init.d",
+      "executable": "/sbin/runit",
+      "prefer_local_yum": false,
+      "start": "/etc/init.d/runit-start start",
+      "stop": "/etc/init.d/runit-start stop",
+      "reload": "/etc/init.d/runit-start reload"
+    },
+    "mongodb": {
+      "client_roles": [
+
+      ],
+      "cluster_name": null,
+      "shard_name": "default",
+      "replica_arbiter_only": false,
+      "replica_build_indexes": true,
+      "replica_hidden": false,
+      "replica_slave_delay": 0,
+      "replica_priority": 1,
+      "replica_tags": {
+
+      },
+      "replica_votes": 1,
+      "auto_configure": {
+        "replicaset": true,
+        "sharding": true
+      },
+      "configserver_url": null,
+      "root_group": "root",
+      "user": "mongod",
+      "group": "mongod",
+      "init_dir": "/etc/init.d",
+      "init_script_template": "redhat-mongodb.init.erb",
+      "sysconfig_file": "/etc/sysconfig/mongodb",
+      "sysconfig_file_template": "mongodb.sysconfig.erb",
+      "dbconfig_file_template": "mongodb.conf.erb",
+      "dbconfig_file": "/etc/mongodb.conf",
+      "package_name": "mongodb-org",
+      "package_version": null,
+      "default_init_name": "mongod",
+      "instance_name": "mongod",
+      "install_method": "mongodb-org",
+      "is_replicaset": null,
+      "is_shard": null,
+      "is_configserver": null,
+      "reload_action": "restart",
+      "template_cookbook": "mongodb",
+      "key_file_content": null,
+      "ruby_gems": {
+        "mongo": null,
+        "bson_ext": null
+      },
+      "config": {
+        "port": 27017,
+        "bind_ip": "0.0.0.0",
+        "logpath": "/var/log/mongodb/mongodb.log",
+        "logappend": true,
+        "fork": true,
+        "pidfilepath": "/var/run/mongodb/mongodb.pid",
+        "dbpath": "/var/lib/mongodb",
+        "nojournal": false,
+        "rest": false,
+        "smallfiles": false,
+        "oplogSize": null,
+        "replSet": null
+      },
+      "mms_agent": {
+        "api_key": null,
+        "package_url": "https://mms.mongodb.com/download/agent/%{agent_type}/mongodb-mms-%{agent_type}-agent",
+        "monitoring": {
+          "version": "2.2.0.70-1",
+          "mmsApiKey": null,
+          "mmsBaseUrl": "https://mms.mongodb.com",
+          "configCollectionsEnabled": true,
+          "configDatabasesEnabled": true,
+          "throttlePassesShardChunkCounts": 10,
+          "throttlePassesDbstats": 20,
+          "throttlePassesOplog": 10,
+          "disableProfileDataCollection": false,
+          "disableGetLogsDataCollection": false,
+          "disableLocksAndRecordStatsDataCollection": false,
+          "enableMunin": true,
+          "useSslForAllConnections": false,
+          "sslRequireValidServerCertificates": false
+        },
+        "backup": {
+          "version": "2.1.0.106-1",
+          "mmsApiKey": null,
+          "mothership": "api-backup.mongodb.com",
+          "https": true,
+          "sslRequireValidServerCertificates": false
+        },
+        "user": "mongodb-mms-agent",
+        "group": "mongodb-mms-agent"
+      },
+      "sysconfig": {
+        "DAEMON": "/usr/bin/$NAME",
+        "DAEMON_USER": "mongod",
+        "DAEMON_OPTS": "--config /etc/mongodb.conf",
+        "CONFIGFILE": "/etc/mongodb.conf",
+        "ENABLE_MONGODB": "yes",
+        "DAEMONUSER": "mongod",
+        "ENABLE_MONGOD": "yes",
+        "ENABLE_MONGO": "yes"
+      },
+      "ulimit": {
+        "fsize": "unlimited",
+        "cpu": "unlimited",
+        "as": "unlimited",
+        "nofile": 64000,
+        "rss": "unlimited",
+        "nproc": 32000
+      },
+      "admin": {
+        "username": "admin",
+        "password": "admin",
+        "roles": [
+          "userAdminAnyDatabase",
+          "dbAdminAnyDatabase"
+        ],
+        "database": "admin"
+      },
+      "users": [
+
+      ]
     }
   },
   "automatic": {
@@ -545,9 +1030,9 @@
         "vendor_id": "GenuineIntel",
         "family": "6",
         "model": "70",
-        "model_name": "Intel(R) Core(TM) i7-4960HQ CPU @ 2.60GHz",
+        "model_name": "Intel(R) Core(TM) i7-4980HQ CPU @ 2.80GHz",
         "stepping": "1",
-        "mhz": "2593.994",
+        "mhz": "2793.532",
         "cache_size": "6144 KB",
         "physical_id": "0",
         "core_id": "0",
@@ -608,15 +1093,15 @@
     },
     "filesystem": {
       "/dev/mapper/centos-root": {
-        "kb_size": "6981632",
-        "kb_used": "2280552",
-        "kb_available": "4701080",
-        "percent_used": "33%",
+        "kb_size": "18307072",
+        "kb_used": "3197116",
+        "kb_available": "15109956",
+        "percent_used": "18%",
         "mount": "/",
-        "total_inodes": "6991872",
-        "inodes_used": "89651",
-        "inodes_available": "6902221",
-        "inodes_percent_used": "2%",
+        "total_inodes": "18317312",
+        "inodes_used": "121790",
+        "inodes_available": "18195522",
+        "inodes_percent_used": "1%",
         "fs_type": "xfs",
         "mount_options": [
           "rw",
@@ -626,7 +1111,7 @@
           "inode64",
           "noquota"
         ],
-        "uuid": "9198242c-a70a-4cd6-a4e4-c1ffc1e81917"
+        "uuid": "bca328d7-ac22-41d1-88e3-e63bef3062d9"
       },
       "devtmpfs": {
         "kb_size": "499128",
@@ -670,8 +1155,8 @@
       },
       "/dev/sda1": {
         "kb_size": "508588",
-        "kb_used": "146216",
-        "kb_available": "362372",
+        "kb_used": "146220",
+        "kb_available": "362368",
         "percent_used": "29%",
         "mount": "/boot",
         "total_inodes": "512000",
@@ -687,7 +1172,7 @@
           "inode64",
           "noquota"
         ],
-        "uuid": "8bde0b02-34f7-4ecd-bb0a-0ee9e999b9c0"
+        "uuid": "48d8bf46-5504-488e-be8e-70b674940b01"
       },
       "proc": {
         "mount": "/proc",
@@ -790,6 +1275,14 @@
           "direct"
         ]
       },
+      "debugfs": {
+        "mount": "/sys/kernel/debug",
+        "fs_type": "debugfs",
+        "mount_options": [
+          "rw",
+          "relatime"
+        ]
+      },
       "mqueue": {
         "mount": "/dev/mqueue",
         "fs_type": "mqueue",
@@ -797,14 +1290,6 @@
           "rw",
           "relatime",
           "seclabel"
-        ]
-      },
-      "debugfs": {
-        "mount": "/sys/kernel/debug",
-        "fs_type": "debugfs",
-        "mount_options": [
-          "rw",
-          "relatime"
         ]
       },
       "hugetlbfs": {
@@ -818,11 +1303,11 @@
       },
       "/dev/sda2": {
         "fs_type": "LVM2_member",
-        "uuid": "C3evc2-xHmm-kZdJ-wZ0C-JxMJ-28N9-P6FOFE"
+        "uuid": "pu6t6W-tEZW-wdwS-B7as-EVBp-ay4w-iUboyN"
       },
       "/dev/mapper/centos-swap": {
         "fs_type": "swap",
-        "uuid": "9bc47cd6-2e3f-4eca-bcad-161df6e4a154"
+        "uuid": "3be2dffc-56c4-45a1-83b5-d6f2ab25fddd"
       },
       "rootfs": {
         "mount": "/",
@@ -839,9 +1324,21 @@
       "machine": "x86_64",
       "os": "GNU/Linux",
       "modules": {
+        "nf_conntrack_ipv4": {
+          "size": "14862",
+          "refcount": "1"
+        },
+        "nf_defrag_ipv4": {
+          "size": "12729",
+          "refcount": "1"
+        },
         "xt_conntrack": {
           "size": "12760",
           "refcount": "1"
+        },
+        "nf_conntrack": {
+          "size": "105702",
+          "refcount": "2"
         },
         "iptable_filter": {
           "size": "12810",
@@ -863,18 +1360,6 @@
           "size": "14552",
           "refcount": "2"
         },
-        "nf_conntrack_ipv4": {
-          "size": "14862",
-          "refcount": "1"
-        },
-        "nf_defrag_ipv4": {
-          "size": "12729",
-          "refcount": "1"
-        },
-        "nf_conntrack": {
-          "size": "105702",
-          "refcount": "2"
-        },
         "crct10dif_pclmul": {
           "size": "14289",
           "refcount": "0"
@@ -887,49 +1372,25 @@
           "size": "22079",
           "refcount": "0"
         },
-        "ghash_clmulni_intel": {
-          "size": "13259",
-          "refcount": "0"
-        },
-        "ppdev": {
-          "size": "17671",
-          "refcount": "0"
-        },
-        "aesni_intel": {
-          "size": "52846",
-          "refcount": "0"
-        },
-        "lrw": {
-          "size": "13286",
-          "refcount": "1"
-        },
-        "gf128mul": {
-          "size": "14951",
-          "refcount": "1"
-        },
         "snd_intel8x0": {
           "size": "38274",
           "refcount": "0"
-        },
-        "glue_helper": {
-          "size": "13990",
-          "refcount": "1"
-        },
-        "ablk_helper": {
-          "size": "13597",
-          "refcount": "1"
         },
         "snd_ac97_codec": {
           "size": "130476",
           "refcount": "1"
         },
-        "cryptd": {
-          "size": "20359",
-          "refcount": "3"
+        "ppdev": {
+          "size": "17671",
+          "refcount": "0"
         },
         "ac97_bus": {
           "size": "12730",
           "refcount": "1"
+        },
+        "ghash_clmulni_intel": {
+          "size": "13259",
+          "refcount": "0"
         },
         "snd_seq": {
           "size": "63074",
@@ -943,29 +1404,57 @@
           "size": "103996",
           "refcount": "2"
         },
-        "parport_pc": {
-          "size": "28165",
+        "aesni_intel": {
+          "size": "52846",
           "refcount": "0"
         },
-        "pcspkr": {
-          "size": "12718",
-          "refcount": "0"
+        "lrw": {
+          "size": "13286",
+          "refcount": "1"
+        },
+        "gf128mul": {
+          "size": "14951",
+          "refcount": "1"
         },
         "snd_timer": {
           "size": "29562",
           "refcount": "2"
         },
-        "serio_raw": {
-          "size": "13462",
-          "refcount": "0"
+        "glue_helper": {
+          "size": "13990",
+          "refcount": "1"
+        },
+        "ablk_helper": {
+          "size": "13597",
+          "refcount": "1"
+        },
+        "cryptd": {
+          "size": "20359",
+          "refcount": "3"
         },
         "snd": {
           "size": "75127",
           "refcount": "6"
         },
+        "pcspkr": {
+          "size": "12718",
+          "refcount": "0"
+        },
+        "video": {
+          "size": "19263",
+          "refcount": "0"
+        },
+        "serio_raw": {
+          "size": "13462",
+          "refcount": "0"
+        },
         "soundcore": {
           "size": "15047",
           "refcount": "1"
+        },
+        "parport_pc": {
+          "size": "28165",
+          "refcount": "0"
         },
         "parport": {
           "size": "42348",
@@ -973,10 +1462,6 @@
         },
         "i2c_piix4": {
           "size": "22106",
-          "refcount": "0"
-        },
-        "video": {
-          "size": "19263",
           "refcount": "0"
         },
         "i2c_core": {
@@ -1059,31 +1544,31 @@
     },
     "memory": {
       "swap": {
-        "cached": "14716kB",
-        "total": "839676kB",
-        "free": "643528kB"
+        "cached": "4840kB",
+        "total": "2097148kB",
+        "free": "2017476kB"
       },
       "total": "1017160kB",
-      "free": "671388kB",
+      "free": "79980kB",
       "buffers": "0kB",
-      "cached": "168856kB",
-      "active": "216692kB",
-      "inactive": "64140kB",
-      "dirty": "24kB",
+      "cached": "283100kB",
+      "active": "290684kB",
+      "inactive": "239184kB",
+      "dirty": "1392kB",
       "writeback": "0kB",
-      "anon_pages": "101548kB",
-      "mapped": "11780kB",
-      "slab": "41192kB",
-      "slab_reclaimable": "15496kB",
-      "slab_unreclaim": "25696kB",
-      "page_tables": "4672kB",
+      "anon_pages": "537168kB",
+      "mapped": "178988kB",
+      "slab": "70500kB",
+      "slab_reclaimable": "40416kB",
+      "slab_unreclaim": "30084kB",
+      "page_tables": "6708kB",
       "nfs_unstable": "0kB",
       "bounce": "0kB",
-      "commit_limit": "1348256kB",
-      "committed_as": "540956kB",
+      "commit_limit": "2605728kB",
+      "committed_as": "1117300kB",
       "vmalloc_total": "34359738367kB",
-      "vmalloc_used": "5476kB",
-      "vmalloc_chunk": "34359730176kB"
+      "vmalloc_used": "5980kB",
+      "vmalloc_chunk": "34359729660kB"
     },
     "network": {
       "interfaces": {
@@ -1169,17 +1654,17 @@
           ],
           "encapsulation": "Ethernet",
           "addresses": {
-            "08:00:27:F2:7A:A0": {
+            "08:00:27:16:BE:81": {
               "family": "lladdr"
             },
-            "192.168.1.15": {
+            "10.10.60.75": {
               "family": "inet",
               "prefixlen": "24",
               "netmask": "255.255.255.0",
-              "broadcast": "192.168.1.255",
+              "broadcast": "10.10.60.255",
               "scope": "Global"
             },
-            "fe80::a00:27ff:fef2:7aa0": {
+            "fe80::a00:27ff:fe16:be81": {
               "family": "inet6",
               "prefixlen": "64",
               "scope": "Link"
@@ -1187,25 +1672,31 @@
           },
           "state": "up",
           "arp": {
-            "192.168.1.1": "c0:ff:d4:91:bf:61",
-            "192.168.1.5": "5c:51:4f:a2:b1:d8",
-            "192.168.1.2": "3c:15:c2:cb:c6:12"
+            "10.10.60.91": "68:5b:35:c1:9a:b5",
+            "10.10.60.1": "00:18:74:b9:88:00"
           },
           "routes": [
             {
               "destination": "default",
               "family": "inet",
-              "via": "192.168.1.1",
+              "via": "10.10.60.1",
               "metric": "100",
               "proto": "static"
             },
             {
-              "destination": "192.168.1.0/24",
+              "destination": "10.10.31.27",
+              "family": "inet",
+              "via": "10.10.60.1",
+              "metric": "100",
+              "proto": "dhcp"
+            },
+            {
+              "destination": "10.10.60.0/24",
               "family": "inet",
               "scope": "link",
               "metric": "100",
               "proto": "kernel",
-              "src": "192.168.1.15"
+              "src": "10.10.60.75"
             },
             {
               "destination": "fe80::/64",
@@ -1214,25 +1705,43 @@
               "proto": "kernel"
             }
           ]
+        },
+        "enp0s8": {
+          "type": "enp0s",
+          "number": "8",
+          "mtu": "1500",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "encapsulation": "Ethernet",
+          "addresses": {
+            "08:00:27:B0:94:CD": {
+              "family": "lladdr"
+            }
+          },
+          "state": "up"
         }
       },
       "default_interface": "enp0s3",
-      "default_gateway": "192.168.1.1"
+      "default_gateway": "10.10.60.1"
     },
     "counters": {
       "network": {
         "interfaces": {
           "lo": {
             "rx": {
-              "bytes": "26250",
-              "packets": "451",
+              "bytes": "196743",
+              "packets": "1216",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
             },
             "tx": {
-              "bytes": "26250",
-              "packets": "451",
+              "bytes": "196743",
+              "packets": "1216",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
@@ -1242,16 +1751,34 @@
           "enp0s3": {
             "tx": {
               "queuelen": "1000",
-              "bytes": "10064878",
-              "packets": "76089",
+              "bytes": "25684922",
+              "packets": "287156",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
               "collisions": "0"
             },
             "rx": {
-              "bytes": "430705665",
-              "packets": "340873",
+              "bytes": "897356894",
+              "packets": "678835",
+              "errors": "0",
+              "drop": "0",
+              "overrun": "0"
+            }
+          },
+          "enp0s8": {
+            "tx": {
+              "queuelen": "1000",
+              "bytes": "0",
+              "packets": "0",
+              "errors": "0",
+              "drop": "0",
+              "carrier": "0",
+              "collisions": "0"
+            },
+            "rx": {
+              "bytes": "3846675",
+              "packets": "39510",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
@@ -1260,9 +1787,9 @@
         }
       }
     },
-    "ipaddress": "192.168.1.15",
-    "macaddress": "08:00:27:F2:7A:A0",
-    "ip6address": "fe80::a00:27ff:fef2:7aa0",
+    "ipaddress": "10.10.60.75",
+    "macaddress": "08:00:27:16:BE:81",
+    "ip6address": "fe80::a00:27ff:fe16:be81",
     "lsb": {
 
     },
@@ -1271,10 +1798,10 @@
     "platform": "centos",
     "platform_version": "7.1.1503",
     "platform_family": "rhel",
-    "uptime_seconds": 45380,
-    "uptime": "12 hours 36 minutes 20 seconds",
-    "idletime_seconds": 44798,
-    "idletime": "12 hours 26 minutes 38 seconds",
+    "uptime_seconds": 20079,
+    "uptime": "5 hours 34 minutes 39 seconds",
+    "idletime_seconds": 19438,
+    "idletime": "5 hours 23 minutes 58 seconds",
     "virtualization": {
       "systems": {
         "vbox": "guest"
@@ -1293,8 +1820,22 @@
           "description": "GNU C Library (GNU libc) stable release version 2.17, by Roland McGrath et al."
         }
       },
+      "java": {
+        "version": "1.8.0_51",
+        "runtime": {
+          "name": "Java(TM) SE Runtime Environment",
+          "build": "1.8.0_51-b16"
+        },
+        "hotspot": {
+          "name": "Java HotSpot(TM) 64-Bit Server VM",
+          "build": "25.51-b03, mixed mode"
+        }
+      },
       "lua": {
         "version": "5.1.4"
+      },
+      "nodejs": {
+        "version": "5.1.0"
       },
       "perl": {
         "version": "5.16.3",
@@ -1339,14 +1880,14 @@
     "filesystem2": {
       "by_device": {
         "/dev/mapper/centos-root": {
-          "kb_size": "6981632",
-          "kb_used": "2280552",
-          "kb_available": "4701080",
-          "percent_used": "33%",
-          "total_inodes": "6991872",
-          "inodes_used": "89651",
-          "inodes_available": "6902221",
-          "inodes_percent_used": "2%",
+          "kb_size": "18307072",
+          "kb_used": "3197116",
+          "kb_available": "15109956",
+          "percent_used": "18%",
+          "total_inodes": "18317312",
+          "inodes_used": "121790",
+          "inodes_available": "18195522",
+          "inodes_percent_used": "1%",
           "fs_type": "xfs",
           "mount_options": [
             "rw",
@@ -1356,7 +1897,7 @@
             "inode64",
             "noquota"
           ],
-          "uuid": "9198242c-a70a-4cd6-a4e4-c1ffc1e81917",
+          "uuid": "bca328d7-ac22-41d1-88e3-e63bef3062d9",
           "mounts": [
             "/"
           ]
@@ -1409,8 +1950,8 @@
         },
         "/dev/sda1": {
           "kb_size": "508588",
-          "kb_used": "146216",
-          "kb_available": "362372",
+          "kb_used": "146220",
+          "kb_available": "362368",
           "percent_used": "29%",
           "total_inodes": "512000",
           "inodes_used": "336",
@@ -1425,7 +1966,7 @@
             "inode64",
             "noquota"
           ],
-          "uuid": "8bde0b02-34f7-4ecd-bb0a-0ee9e999b9c0",
+          "uuid": "48d8bf46-5504-488e-be8e-70b674940b01",
           "mounts": [
             "/boot"
           ]
@@ -1558,6 +2099,16 @@
             "/proc/sys/fs/binfmt_misc"
           ]
         },
+        "debugfs": {
+          "fs_type": "debugfs",
+          "mount_options": [
+            "rw",
+            "relatime"
+          ],
+          "mounts": [
+            "/sys/kernel/debug"
+          ]
+        },
         "mqueue": {
           "fs_type": "mqueue",
           "mount_options": [
@@ -1567,16 +2118,6 @@
           ],
           "mounts": [
             "/dev/mqueue"
-          ]
-        },
-        "debugfs": {
-          "fs_type": "debugfs",
-          "mount_options": [
-            "rw",
-            "relatime"
-          ],
-          "mounts": [
-            "/sys/kernel/debug"
           ]
         },
         "hugetlbfs": {
@@ -1597,14 +2138,14 @@
         },
         "/dev/sda2": {
           "fs_type": "LVM2_member",
-          "uuid": "C3evc2-xHmm-kZdJ-wZ0C-JxMJ-28N9-P6FOFE",
+          "uuid": "pu6t6W-tEZW-wdwS-B7as-EVBp-ay4w-iUboyN",
           "mounts": [
 
           ]
         },
         "/dev/mapper/centos-swap": {
           "fs_type": "swap",
-          "uuid": "9bc47cd6-2e3f-4eca-bcad-161df6e4a154",
+          "uuid": "3be2dffc-56c4-45a1-83b5-d6f2ab25fddd",
           "mounts": [
 
           ]
@@ -1626,19 +2167,19 @@
       },
       "by_mountpoint": {
         "/": {
-          "kb_size": "6981632",
-          "kb_used": "2280552",
-          "kb_available": "4701080",
-          "percent_used": "33%",
-          "total_inodes": "6991872",
-          "inodes_used": "89651",
-          "inodes_available": "6902221",
-          "inodes_percent_used": "2%",
+          "kb_size": "18307072",
+          "kb_used": "3197116",
+          "kb_available": "15109956",
+          "percent_used": "18%",
+          "total_inodes": "18317312",
+          "inodes_used": "121790",
+          "inodes_available": "18195522",
+          "inodes_percent_used": "1%",
           "fs_type": "rootfs",
           "mount_options": [
             "rw"
           ],
-          "uuid": "9198242c-a70a-4cd6-a4e4-c1ffc1e81917",
+          "uuid": "bca328d7-ac22-41d1-88e3-e63bef3062d9",
           "devices": [
             "/dev/mapper/centos-root",
             "rootfs"
@@ -1688,12 +2229,12 @@
         },
         "/run": {
           "kb_size": "508580",
-          "kb_used": "6664",
-          "kb_available": "501916",
+          "kb_used": "6756",
+          "kb_available": "501824",
           "percent_used": "2%",
           "total_inodes": "127145",
-          "inodes_used": "359",
-          "inodes_available": "126786",
+          "inodes_used": "389",
+          "inodes_available": "126756",
           "inodes_percent_used": "1%",
           "fs_type": "tmpfs",
           "mount_options": [
@@ -1731,8 +2272,8 @@
         },
         "/boot": {
           "kb_size": "508588",
-          "kb_used": "146216",
-          "kb_available": "362372",
+          "kb_used": "146220",
+          "kb_available": "362368",
           "percent_used": "29%",
           "total_inodes": "512000",
           "inodes_used": "336",
@@ -1747,7 +2288,7 @@
             "inode64",
             "noquota"
           ],
-          "uuid": "8bde0b02-34f7-4ecd-bb0a-0ee9e999b9c0",
+          "uuid": "48d8bf46-5504-488e-be8e-70b674940b01",
           "devices": [
             "/dev/sda1"
           ]
@@ -2000,6 +2541,16 @@
             "systemd-1"
           ]
         },
+        "/sys/kernel/debug": {
+          "fs_type": "debugfs",
+          "mount_options": [
+            "rw",
+            "relatime"
+          ],
+          "devices": [
+            "debugfs"
+          ]
+        },
         "/dev/mqueue": {
           "fs_type": "mqueue",
           "mount_options": [
@@ -2009,16 +2560,6 @@
           ],
           "devices": [
             "mqueue"
-          ]
-        },
-        "/sys/kernel/debug": {
-          "fs_type": "debugfs",
-          "mount_options": [
-            "rw",
-            "relatime"
-          ],
-          "devices": [
-            "debugfs"
           ]
         },
         "/dev/hugepages": {
@@ -2036,15 +2577,15 @@
       "by_pair": {
         "/dev/mapper/centos-root,/": {
           "device": "/dev/mapper/centos-root",
-          "kb_size": "6981632",
-          "kb_used": "2280552",
-          "kb_available": "4701080",
-          "percent_used": "33%",
+          "kb_size": "18307072",
+          "kb_used": "3197116",
+          "kb_available": "15109956",
+          "percent_used": "18%",
           "mount": "/",
-          "total_inodes": "6991872",
-          "inodes_used": "89651",
-          "inodes_available": "6902221",
-          "inodes_percent_used": "2%",
+          "total_inodes": "18317312",
+          "inodes_used": "121790",
+          "inodes_available": "18195522",
+          "inodes_percent_used": "1%",
           "fs_type": "xfs",
           "mount_options": [
             "rw",
@@ -2054,7 +2595,7 @@
             "inode64",
             "noquota"
           ],
-          "uuid": "9198242c-a70a-4cd6-a4e4-c1ffc1e81917"
+          "uuid": "bca328d7-ac22-41d1-88e3-e63bef3062d9"
         },
         "devtmpfs,/dev": {
           "device": "devtmpfs",
@@ -2099,13 +2640,13 @@
         "tmpfs,/run": {
           "device": "tmpfs",
           "kb_size": "508580",
-          "kb_used": "6664",
-          "kb_available": "501916",
+          "kb_used": "6756",
+          "kb_available": "501824",
           "percent_used": "2%",
           "mount": "/run",
           "total_inodes": "127145",
-          "inodes_used": "359",
-          "inodes_available": "126786",
+          "inodes_used": "389",
+          "inodes_available": "126756",
           "inodes_percent_used": "1%",
           "fs_type": "tmpfs",
           "mount_options": [
@@ -2140,8 +2681,8 @@
         "/dev/sda1,/boot": {
           "device": "/dev/sda1",
           "kb_size": "508588",
-          "kb_used": "146216",
-          "kb_available": "362372",
+          "kb_used": "146220",
+          "kb_available": "362368",
           "percent_used": "29%",
           "mount": "/boot",
           "total_inodes": "512000",
@@ -2157,7 +2698,7 @@
             "inode64",
             "noquota"
           ],
-          "uuid": "8bde0b02-34f7-4ecd-bb0a-0ee9e999b9c0"
+          "uuid": "48d8bf46-5504-488e-be8e-70b674940b01"
         },
         "proc,/proc": {
           "device": "proc",
@@ -2389,6 +2930,15 @@
             "direct"
           ]
         },
+        "debugfs,/sys/kernel/debug": {
+          "device": "debugfs",
+          "mount": "/sys/kernel/debug",
+          "fs_type": "debugfs",
+          "mount_options": [
+            "rw",
+            "relatime"
+          ]
+        },
         "mqueue,/dev/mqueue": {
           "device": "mqueue",
           "mount": "/dev/mqueue",
@@ -2397,15 +2947,6 @@
             "rw",
             "relatime",
             "seclabel"
-          ]
-        },
-        "debugfs,/sys/kernel/debug": {
-          "device": "debugfs",
-          "mount": "/sys/kernel/debug",
-          "fs_type": "debugfs",
-          "mount_options": [
-            "rw",
-            "relatime"
           ]
         },
         "hugetlbfs,/dev/hugepages": {
@@ -2424,12 +2965,12 @@
         "/dev/sda2,": {
           "device": "/dev/sda2",
           "fs_type": "LVM2_member",
-          "uuid": "C3evc2-xHmm-kZdJ-wZ0C-JxMJ-28N9-P6FOFE"
+          "uuid": "pu6t6W-tEZW-wdwS-B7as-EVBp-ay4w-iUboyN"
         },
         "/dev/mapper/centos-swap,": {
           "device": "/dev/mapper/centos-swap",
           "fs_type": "swap",
-          "uuid": "9bc47cd6-2e3f-4eca-bcad-161df6e4a154"
+          "uuid": "3be2dffc-56c4-45a1-83b5-d6f2ab25fddd"
         },
         "/dev/sr0,": {
           "device": "/dev/sr0"
@@ -2492,7 +3033,7 @@
             "Product Name": "VirtualBox",
             "Version": "1.2",
             "Serial Number": "0",
-            "UUID": "C6BDF389-51F7-4105-AE38-07A02AADCEC8",
+            "UUID": "EF17A98E-D5BB-4381-80DB-1445391D03D6",
             "Wake-up Type": "Power Switch",
             "SKU Number": "Not Specified",
             "Family": "Virtual Machine"
@@ -2502,7 +3043,7 @@
         "product_name": "VirtualBox",
         "version": "1.2",
         "serial_number": "0",
-        "uuid": "C6BDF389-51F7-4105-AE38-07A02AADCEC8",
+        "uuid": "EF17A98E-D5BB-4381-80DB-1445391D03D6",
         "wake_up_type": "Power Switch",
         "sku_number": "Not Specified",
         "family": "Virtual Machine"
@@ -2572,30 +3113,30 @@
             "record_id": "0x0002",
             "size": "11",
             "application_identifier": "OEM Strings",
-            "String 1": "vboxVer_5.0.6",
-            "String 2": "vboxRev_103037"
+            "String 1": "vboxVer_5.0.8",
+            "String 2": "vboxRev_103449"
           }
         ],
-        "string_1": "vboxVer_5.0.6",
-        "string_2": "vboxRev_103037"
+        "string_1": "vboxVer_5.0.8",
+        "string_2": "vboxRev_103449"
       }
     },
-    "hostname": "wolferx",
-    "machinename": "wolferx",
-    "fqdn": "wolferx",
-    "domain": null,
+    "hostname": "danielmcbookbro",
+    "machinename": "danielmcbookbro.ysihq.com",
+    "fqdn": "danielmcbookbro.ysihq.com",
+    "domain": "ysihq.com",
     "init_package": "systemd",
     "keys": {
       "ssh": {
-        "host_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABAQD04o1Xc/683B3P9ACYdxnoX05Dv8z2O9TXm0KxWojNJyrAeaqhAIxdimSv7RypjG+8bXWva7e4vHvRC8CEAOfuMbz0RK3BNAVPPo59ojXtd+UyktKSWFJ2Zay/C4XOJQ3GltZoocHwNj+v1cGsY39PwqcFicawx+maxorsVOIwJD5xVjis68Uds5flhLXPhydOgVR5kK+n9mvgl4QhH19mgJt96HG/osGVRQ9DmgkahSouYqWpA3w9O5T5T9JJkcZgmEDm1aJIXp7r4GbvjUNIQLSedJuqg+h/GpqLbiSs1M0RCPPaSmAiwU2vf9RpC+gW82YwYR7YrTM23rybMgBF",
-        "host_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHmxPsGkMVWHzg7vTPPxkXtjuvdv5jIeJtV6mVv10IdB3jqFWok7HkvICW0G0rItySr7pXDx5gA57cjyAmqCFdk=",
+        "host_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABAQDBVBxer9tlIsm+hGtTQ2j2odaIQ1Lzo99YCL2MWMQSYMXbcBSKnUYEDWJ0846TcJLD+ipDHaJWHu+R+UxeIBHUQIHLiRbnvNAV7epUMoIsqr7k6cF38HBl6XwIFrcK0CFJvroFgkqTatuDPFLzSqa0CxAIpS4PmmIBR+3JJYKiWfbLbmx9Ky0WQMolG0Jn643J84eOwE/3bm+ehP1w7coBXopWXhoxK0vlh6PCGKfH118152prjanvS8THKwcgw0s+TMIVA/oDOxRKvaKLnYZANNZx9onE5/1Xd0p/mScD6QxumnNboIpn5HRMKFiRwXOFZC2VFgVb4Mh590MVrEvh",
+        "host_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKx3WILSiLx4MXW80U5ldKmi8ECKgMGv9CWzFsquPlf0NYfgfWHyYomyf3C9QTEEgKlpEOy+xSUrLpLwNkYQUOw=",
         "host_ecdsa_type": "ecdsa-sha2-nistp256",
-        "host_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAIEmICW90AFFTENuNZfyYx5TfCrJko7QS6BqAYumsorw7"
+        "host_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAIOyopzOKUv6LR6qedLtcerAaaVKaRNB9SoMBXNdaB6xx"
       }
     },
     "block_device": {
       "sda": {
-        "size": "16777216",
+        "size": "41943040",
         "removable": "0",
         "model": "VBOX HARDDISK",
         "rev": "1.0",
@@ -2615,17 +3156,17 @@
         "rotational": "1"
       },
       "dm-0": {
-        "size": "13983744",
+        "size": "36634624",
         "removable": "0",
         "rotational": "1"
       },
       "dm-1": {
-        "size": "1679360",
+        "size": "4194304",
         "removable": "0",
         "rotational": "1"
       }
     },
-    "ohai_time": 1445947274.472825,
+    "ohai_time": 1447978560.5224097,
     "etc": {
       "passwd": {
         "root": {
@@ -2754,6 +3295,13 @@
           "shell": "/sbin/nologin",
           "gecos": ""
         },
+        "chrony": {
+          "dir": "/var/lib/chrony",
+          "gid": 997,
+          "uid": 998,
+          "shell": "/sbin/nologin",
+          "gecos": ""
+        },
         "sshd": {
           "dir": "/var/empty/sshd",
           "gid": 74,
@@ -2763,10 +3311,17 @@
         },
         "nginx": {
           "dir": "/var/lib/nginx",
-          "gid": 997,
-          "uid": 998,
+          "gid": 996,
+          "uid": 997,
           "shell": "/sbin/nologin",
           "gecos": "Nginx web server"
+        },
+        "cassandra": {
+          "dir": "/var/lib/cassandra",
+          "gid": 995,
+          "uid": 996,
+          "shell": "/bin/bash",
+          "gecos": ""
         },
         "tomcat": {
           "dir": "/usr/share/tomcat",
@@ -2774,6 +3329,13 @@
           "uid": 91,
           "shell": "/bin/nologin",
           "gecos": "Apache Tomcat"
+        },
+        "mongod": {
+          "dir": "/var/lib/mongo",
+          "gid": 994,
+          "uid": 995,
+          "shell": "/bin/false",
+          "gecos": "mongod"
         }
       },
       "group": {
@@ -2987,32 +3549,14 @@
 
           ]
         },
-        "sshd": {
-          "gid": 74,
-          "members": [
-
-          ]
-        },
-        "slocate": {
-          "gid": 21,
-          "members": [
-
-          ]
-        },
-        "sysadmin": {
-          "gid": 1000,
-          "members": [
-
-          ]
-        },
-        "nginx": {
+        "chrony": {
           "gid": 997,
           "members": [
 
           ]
         },
-        "tomcat": {
-          "gid": 91,
+        "sshd": {
+          "gid": 74,
           "members": [
 
           ]
@@ -3034,6 +3578,36 @@
           "members": [
 
           ]
+        },
+        "slocate": {
+          "gid": 21,
+          "members": [
+
+          ]
+        },
+        "nginx": {
+          "gid": 996,
+          "members": [
+
+          ]
+        },
+        "cassandra": {
+          "gid": 995,
+          "members": [
+
+          ]
+        },
+        "tomcat": {
+          "gid": 91,
+          "members": [
+
+          ]
+        },
+        "mongod": {
+          "gid": 994,
+          "members": [
+
+          ]
         }
       }
     },
@@ -3042,12 +3616,6 @@
     "recipes": [
       "wolfer-init",
       "wolfer-init::default",
-      "group",
-      "group::default",
-      "users",
-      "users::default",
-      "sudo",
-      "sudo::default",
       "git",
       "git::default",
       "iptables",
@@ -3058,33 +3626,52 @@
       "nginx::default",
       "java",
       "java::default",
-      "wolfer-cassandra",
-      "wolfer-cassandra::default",
+      "cassandra-dse",
+      "cassandra-dse::default",
       "tomcat",
       "tomcat::default",
       "maven",
       "maven::default",
       "wolfer-api",
       "wolfer-api::default",
+      "wolfer-end",
+      "wolfer-end::default",
+      "nodejs",
+      "nodejs::default",
+      "wolfer-web",
+      "wolfer-web::default",
       "java::set_attributes_from_version",
-      "java::openjdk",
+      "java::oracle",
       "java::set_java_home",
-      "ark::default"
+      "cassandra-dse::datastax",
+      "cassandra-dse::user",
+      "cassandra-dse::repositories",
+      "yum::default",
+      "cassandra-dse::config",
+      "ark::default",
+      "nodejs::install",
+      "nodejs::nodejs_from_binary",
+      "nodejs::npm",
+      "nodejs::npm_packages",
+      "mongodb::default",
+      "mongodb::install",
+      "mongodb::10gen_repo",
+      "mongodb::mongodb_org_repo"
     ],
     "expanded_run_list": [
       "wolfer-init::default",
-      "group::default",
-      "users::default",
-      "sudo::default",
       "git::default",
       "iptables::default",
       "iptables_conf::default",
       "nginx::default",
       "java::default",
-      "wolfer-cassandra::default",
+      "cassandra-dse::default",
       "tomcat::default",
       "maven::default",
-      "wolfer-api::default"
+      "wolfer-api::default",
+      "wolfer-end::default",
+      "nodejs::default",
+      "wolfer-web::default"
     ],
     "roles": [
 
@@ -3092,15 +3679,6 @@
     "cookbooks": {
       "wolfer-init": {
         "version": "0.1.0"
-      },
-      "group": {
-        "version": "0.1.0"
-      },
-      "users": {
-        "version": "1.8.2"
-      },
-      "sudo": {
-        "version": "2.7.2"
       },
       "git": {
         "version": "0.1.0"
@@ -3117,8 +3695,8 @@
       "java": {
         "version": "1.35.0"
       },
-      "wolfer-cassandra": {
-        "version": "0.1.0"
+      "cassandra-dse": {
+        "version": "4.0.0"
       },
       "tomcat": {
         "version": "0.17.3"
@@ -3129,48 +3707,81 @@
       "wolfer-api": {
         "version": "0.1.0"
       },
+      "wolfer-end": {
+        "version": "0.1.0"
+      },
+      "nodejs": {
+        "version": "2.4.2"
+      },
+      "wolfer-web": {
+        "version": "0.1.0"
+      },
       "compat_resource": {
         "version": "12.5.10"
+      },
+      "ulimit": {
+        "version": "0.3.3"
+      },
+      "apt": {
+        "version": "2.9.2"
+      },
+      "yum": {
+        "version": "3.8.2"
+      },
+      "ark": {
+        "version": "0.9.0"
       },
       "openssl": {
         "version": "4.4.0"
       },
       "yum-epel": {
-        "version": "0.6.3"
-      },
-      "ark": {
-        "version": "0.9.0"
+        "version": "0.6.4"
       },
       "windows": {
-        "version": "1.38.2"
+        "version": "1.38.4"
       },
-      "chef-sugar": {
-        "version": "3.1.1"
+      "build-essential": {
+        "version": "2.2.4"
       },
-      "yum": {
-        "version": "3.8.1"
+      "homebrew": {
+        "version": "1.13.0"
+      },
+      "mongodb": {
+        "version": "0.16.2"
       },
       "7-zip": {
         "version": "1.0.2"
       },
+      "chef-sugar": {
+        "version": "3.1.1"
+      },
       "chef_handler": {
         "version": "1.2.0"
+      },
+      "python": {
+        "version": "1.4.6"
+      },
+      "runit": {
+        "version": "1.7.4"
+      },
+      "packagecloud": {
+        "version": "0.1.0"
       }
     }
   },
   "run_list": [
     "recipe[wolfer-init]",
-    "recipe[group]",
-    "recipe[users]",
-    "recipe[sudo]",
     "recipe[git]",
     "recipe[iptables]",
     "recipe[iptables_conf]",
     "recipe[nginx]",
     "recipe[java]",
-    "recipe[wolfer-cassandra]",
+    "recipe[cassandra-dse]",
     "recipe[tomcat]",
     "recipe[maven]",
-    "recipe[wolfer-api]"
+    "recipe[wolfer-api]",
+    "recipe[wolfer-end]",
+    "recipe[nodejs]",
+    "recipe[wolfer-web]"
   ]
 }

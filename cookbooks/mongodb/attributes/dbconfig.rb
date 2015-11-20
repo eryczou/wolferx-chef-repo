@@ -20,15 +20,15 @@ default['mongodb']['config']['logappend'] = true
 # if node.platform_family?("rhel", "fedora") then
 case node['platform_family']
 when 'rhel', 'fedora'
-  default['mongodb']['config']['fork'] = false
+  default['mongodb']['config']['fork'] = true 
   default['mongodb']['config']['pidfilepath'] = '/var/run/mongodb/mongodb.pid'
 else
-  default['mongodb']['config']['fork'] = false
+  default['mongodb']['config']['fork'] = true 
 end
 default['mongodb']['config']['dbpath'] = '/var/lib/mongodb'
-default['mongodb']['config']['nojournal'] = false
+default['mongodb']['config']['nojournal'] = true 
 default['mongodb']['config']['rest'] = false
-default['mongodb']['config']['smallfiles'] = false
+default['mongodb']['config']['smallfiles'] = true 
 default['mongodb']['config']['oplogSize'] = nil
 
 default['mongodb']['config']['replSet'] = nil

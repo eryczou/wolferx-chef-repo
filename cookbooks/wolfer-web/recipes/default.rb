@@ -8,6 +8,11 @@
 #
 include_recipe "mongodb::default"
 
+execute 'remove mongo lock file' do
+  command 'rm -rf /var/lib/mongo/mongod.lock'
+  only_if {::File.exists?("/var/lib/mongo/mongod.lock")}
+end
+
 mongodb_instance "wolfer_mongo" do
   port node['mongodb']['port']
 end
@@ -32,17 +37,9 @@ execute 'npm install -g forever' do
   command 'npm install -g forever'
 end
 
-bash 'export npm bin to PATH' do
-  cwd '/root' 
-  code <<-EOH
-    if [[ :$PATH: == *:/usr/local/nodejs-binary-5.1.0/bin:* ]]; then
-      echo '# O.K., the directory /usr/local/nodejs-binary-5.1.0/bin is on the path'
-    else
-      echo 'export PATH=$PATH:/usr/local/nodejs-binary-5.1.0/bin'  >> ~/.bash_profile
-      export PATH=$PATH:/usr/local/nodejs-binary-5.1.0/bin
-    fi
-    EOH
-end
+execute 'add npm /bin to PATH' do
+  command 'source ~/chef-repo/wolfer_script/export_npm_to_path.sh'
+end 
 
 git '/site/wolferweb' do
   repository 'https://github.com/wolferian/wolferweb.git'
