@@ -37,14 +37,6 @@ execute 'npm install -g forever' do
   command 'npm install -g forever'
 end
 
-execute 'add npm /bin to PATH' do
-  command 'source ~/chef-repo/wolfer_script/export_npm_to_path.sh'
-end 
-
-magic_shell_environment "PATH" do
-  value "$PATH:" + '/usr/local/nodejs-binary-5.1.0/bin'
-end
-
 git '/site/wolferweb' do
   repository 'https://github.com/wolferian/wolferweb.git'
   revision 'master'
@@ -53,25 +45,30 @@ end
 
 execute 'npm install wolerweb' do
   cwd '/site/wolferweb'
+  environment 'PATH' => "#{ENV['PATH']}:/usr/local/nodejs-binary-5.1.0/bin"
   command 'npm install'
 end
 
 execute 'bower install wolerweb' do
   cwd '/site/wolferweb'
+  environment 'PATH' => "#{ENV['PATH']}:/usr/local/nodejs-binary-5.1.0/bin"
   command 'bower install --allow-root --config.interactive=false'
 end
 
 execute 'gulp build wolerweb' do
   cwd '/site/wolferweb'
+  environment 'PATH' => "#{ENV['PATH']}:/usr/local/nodejs-binary-5.1.0/bin"
   command 'gulp build'
 end
 
 execute 'forever stop all' do
   cwd '/site/wolferweb'
+  environment 'PATH' => "#{ENV['PATH']}:/usr/local/nodejs-binary-5.1.0/bin"
   command 'forever stopall'
 end
 
 execute 'forever wolferweb' do
   cwd '/site/wolferweb'
+  environment 'PATH' => "#{ENV['PATH']}:/usr/local/nodejs-binary-5.1.0/bin"
   command 'npm run forever'
 end
