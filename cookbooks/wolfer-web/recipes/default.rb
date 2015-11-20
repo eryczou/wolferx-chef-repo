@@ -6,16 +6,13 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "mongodb::default"
 
 execute 'remove mongo lock file' do
   command 'rm -rf /var/lib/mongo/mongod.lock'
   only_if {::File.exists?("/var/lib/mongo/mongod.lock")}
 end
 
-mongodb_instance "wolfer_mongo" do
-  port node['mongodb']['port']
-end
+include_recipe "mongodb::default"
 
 execute 'npm install -g gulp' do
   command 'npm install -g gulp'
