@@ -81,12 +81,9 @@ when 'rhel', 'fedora'
   default[:mongodb][:init_script_template] = 'redhat-mongodb.init.erb'
   default[:mongodb][:default_init_name] = 'mongod'
   default[:mongodb][:instance_name] = 'mongod'
-  # then there is this guy
-  if node['platform'] == 'centos' || node['platform'] == 'amazon'
-    Chef::Log.warn("CentOS doesn't provide mongodb, forcing use of mongodb-org repo")
-    default[:mongodb][:install_method] = 'mongodb-org'
-    default[:mongodb][:package_name] = 'mongodb-org'
-  end
+  Chef::Log.warn("CentOS doesn't provide mongodb, forcing use of mongodb-org repo")
+  default[:mongodb][:install_method] = 'mongodb-org'
+  default[:mongodb][:package_name] = 'mongodb-org'
 when 'debian'
   if node['platform'] == 'ubuntu'
     default[:mongodb][:apt_repo] = 'ubuntu-upstart'
